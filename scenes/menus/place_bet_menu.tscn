@@ -107,6 +107,7 @@ texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Horf0" unique_id=111033524]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 placeholder_text = "Place Your Bet"
 expand_to_text_length = true
@@ -178,6 +179,7 @@ texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Horf2" unique_id=71482903]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 placeholder_text = "Place Your Bet"
 expand_to_text_length = true
@@ -213,6 +215,7 @@ texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Horf3" unique_id=319949958]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 placeholder_text = "Place Your Bet"
 expand_to_text_length = true
@@ -248,6 +251,7 @@ texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/Horf4" unique_id=1841290269]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 placeholder_text = "Place Your Bet"
 expand_to_text_length = true

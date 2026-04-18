@@ -1,7 +1,5 @@
 extends Control
 
-signal horf_ids_populated
-
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 
 @onready var day_title: RichTextLabel = $DayTitle
@@ -22,12 +20,12 @@ func _ready() -> void:
 		day_title.text = str("[center][shake]Day ", GameData.current_day)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
-	await horf_ids_populated
+	await get_tree().process_frame
 	_populate_betting_menu()
 
 
 func _connect_signals() -> void:
-	Signals.horf_is_winner.connect(_horf_wins)
+	Signals.horf_is_winner.connect(_on_horf_is_winner)
 	Signals.player_placed_bet.connect(_on_player_placed_bet)
 
 
@@ -38,7 +36,10 @@ func _assign_horf_ids(random_horf_id_array: Array) -> void:
 		horf_child.assign_values_based_on_id()
 		horf_bet_dict[random_horf_id_array[array_position_count]] = 0
 		array_position_count += 1
-	horf_ids_populated.emit()
+
+
+func _game_over() -> void:
+	print("Game over!")
 
 
 func _randomize_id_array() -> Array:
@@ -84,5 +85,20 @@ func _populate_betting_menu() -> void:
 	place_bets_menu.populate_text()
 
 
-func _horf_wins(horf_id: int) -> void:
-	prints("Horf wins", horf_id)
+func _on_horf_is_winner(horf_id: int) -> void:
+	var winning_bet: int
+	if horf_bet_dict.has(horf_id):
+		winning_bet = horf_bet_dict[horf_id]
+	var odds_multiplier: int
+	for horf_child in get_tree().get_nodes_in_group("horf"):
+		if horf_id == horf_child.horf_id:
+			odds_multiplier = horf_child.odds_to_one
+	var total_winnings = odds_multiplier * winning_bet
+	prints(winning_bet, odds_multiplier, total_winnings)
+	Signals.update_money.emit(total_winnings)
+	await Signals.money_updated
+	GameData.current_day += 1
+	if GameData.current_day > GameData.MAX_DAYS:
+		_game_over()
+		return
+	get_tree().reload_current_scene()

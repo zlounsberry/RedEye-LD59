@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_DAYS: int = 5
+const MAX_DAYS: int = 2
 
 const HORF_DICT: Dictionary = {
 	0: {

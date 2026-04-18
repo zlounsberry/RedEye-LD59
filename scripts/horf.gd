@@ -113,9 +113,9 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 
 func _race_start() -> void:
 	horf_anim.play("run")
-	$LockIn.start()
+	lock_in_timer.start()
 	_update_current_speed()
-	$ChangeSpeed.start()
+	change_speed_timer.start()
 
 
 func _race_over(_horf_id: int) -> void:
@@ -161,10 +161,14 @@ func _on_mouse_hitbox_mouse_exited() -> void:
 
 
 func _on_lose_button_pressed() -> void:
+	if cost_to_bribe > GameData.current_money:
+		return
 	_bribe_jockey(true)
 	Signals.update_money.emit(-cost_to_bribe)
 
 
 func _on_win_button_pressed() -> void:
+	if cost_to_bribe > GameData.current_money:
+		return
 	_bribe_jockey(false)
 	Signals.update_money.emit(-cost_to_bribe)
