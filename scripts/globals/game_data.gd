@@ -1,5 +1,7 @@
 extends Node
 
+const MAX_DAYS: int = 5
+
 const HORF_DICT: Dictionary = {
 	0: {
 		"odds_to_one": 1,

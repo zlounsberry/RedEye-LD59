@@ -5,6 +5,7 @@ const VELOCITY_UPDATES: int = 5
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
 @onready var lock_in_timer: Timer = $LockIn
+@onready var horf_sprite: Sprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
 @onready var horf_anim: AnimationPlayer = $HorfAnim
 @onready var emote_anim: AnimationPlayer = $EmoteAnim
 @onready var stats_popup: Panel = $StatsPopup
@@ -44,7 +45,6 @@ func assign_values_based_on_id() -> void:
 	lock_in_likelihood = GameData.HORF_DICT[horf_id]["lock_in_likelihood"]
 	_assign_name()
 	if not name_is_unique:
-		print("running again for ", self)
 		_assign_name()
 	_populate_stats_popup()
 
@@ -60,9 +60,7 @@ func _assign_name() -> void:
 		if horf_child.horf_name_first == horf_name_first and horf_child.horf_name_last == horf_name_last:
 			if not horf_child == self:
 				name_is_unique = false
-				prints(horf_name_first, horf_name_last, "taken for", self, "by", horf_child)
 				return
-	print("name not taken!")
 	name_is_unique = true
 
 

@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_0twoy"]
 [ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_41dsf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41dsf"]
+bg_color = Color(0.13605595, 0.13605595, 0.13605595, 1)
+
 [node name="StatsPopup" type="Panel" unique_id=150412088 groups=["stats_popup"]]
 z_index = 1
 custom_minimum_size = Vector2(256, 288)
 offset_right = 256.0
 offset_bottom = 256.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
 script = ExtResource("1_0twoy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656779253]

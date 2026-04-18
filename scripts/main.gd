@@ -2,8 +2,15 @@ extends Control
 
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 
+@onready var day_title: RichTextLabel = $DayTitle
+
+
 func _ready() -> void:
 	_connect_signals()
+	if GameData.current_day < GameData.MAX_DAYS:
+		day_title.text = str("[center]Day ", GameData.current_day)
+	else:
+		day_title.text = str("[center][shake]Day ", GameData.current_day)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
 
