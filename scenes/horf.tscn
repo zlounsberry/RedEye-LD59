@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_tgtbq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 452, 0, 640, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 452, 0, 576, 0)
 }
 point_count = 2
 
@@ -88,11 +88,16 @@ texture = ExtResource("1_00vqn")
 
 [node name="Emote" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=729160741]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=875844191]
+[node name="HorseAnim" type="AnimationPlayer" parent="." unique_id=875844191]
 libraries/ = SubResource("AnimationLibrary_60tau")
 
-[node name="Timer" type="Timer" parent="." unique_id=639052183]
+[node name="EmoteAnim" type="AnimationPlayer" parent="." unique_id=311222826]
+
+[node name="ChangeSpeed" type="Timer" parent="." unique_id=639052183]
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="LockIn" type="Timer" parent="." unique_id=1364391282]
+
+[connection signal="timeout" from="ChangeSpeed" to="." method="_on_change_speed_timeout"]
+[connection signal="timeout" from="LockIn" to="." method="_on_lock_in_timeout"]

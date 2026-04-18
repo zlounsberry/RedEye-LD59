@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bfebo3ty58mr1"]
+
+[ext_resource type="Script" uid="uid://by3u4mjgu12l1" path="res://scripts/signal_gun.gd" id="1_it1du"]
+[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="1_oo2f5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at0md"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b44r"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw40t"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22x2u"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl1a2"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmxjl"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0k20"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfnqq"]
+atlas = ExtResource("1_oo2f5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8mtm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at0md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b44r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw40t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22x2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl1a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmxjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0k20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfnqq")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="GunContainer" type="Node2D" unique_id=1734376585]
+script = ExtResource("1_it1du")
+
+[node name="Gun" type="AnimatedSprite2D" parent="." unique_id=860526470]
+sprite_frames = SubResource("SpriteFrames_h8mtm")
+animation = &"fire"
+
+[node name="Fire" type="Button" parent="." unique_id=2045570035]
+custom_minimum_size = Vector2(96, 0)
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 48.0
+offset_bottom = 64.0
+action_mode = 0
+button_mask = 7
+text = "Fire!"
+metadata/_edit_use_anchors_ = true
+
+[node name="FireSound" type="AudioStreamPlayer" parent="." unique_id=1503514663]
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1492678899]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="pressed" from="Fire" to="." method="_on_fire_pressed"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

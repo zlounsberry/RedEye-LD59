@@ -11,5 +11,3 @@ func _connect_signals() -> void:
 
 func _horf_wins(horf_id: int) -> void:
 	prints("Horf wins", horf_id)
-
-func ok() -> void
