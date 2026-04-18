@@ -88,7 +88,7 @@ texture = ExtResource("1_00vqn")
 
 [node name="Emote" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=729160741]
 
-[node name="HorseAnim" type="AnimationPlayer" parent="." unique_id=875844191]
+[node name="HorfAnim" type="AnimationPlayer" parent="." unique_id=875844191]
 libraries/ = SubResource("AnimationLibrary_60tau")
 
 [node name="EmoteAnim" type="AnimationPlayer" parent="." unique_id=311222826]

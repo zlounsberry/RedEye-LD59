@@ -46,5 +46,3 @@ speed_modifier = 1.05
 horf_id = 2
 
 [node name="GunContainer" parent="." unique_id=1881853301 instance=ExtResource("3_sugp2")]
-layout_mode = 0
-anchors_preset = 0
