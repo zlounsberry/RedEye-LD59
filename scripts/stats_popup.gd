@@ -18,9 +18,9 @@ var speed_high: float
 var lock_in_likelihood: float
 var horf_id: int
 var odds_to_one: int
-var modifier_delta_on_bribe: int
 var horf_name_first: String
 var horf_name_last: String
+var modifier_delta_on_bribe: int
 var lock_in_delta_on_bribe: int
 var cost_to_bribe: int
 
@@ -28,11 +28,11 @@ var cost_to_bribe: int
 func populate_text() -> void:
 	name_label.text = str(horf_name_first, " ", horf_name_last)
 	odds_label.text = str("Odds: ", odds_to_one, ":1")
-	speed_label.text = str("Speed: ", speed_low, " - ", speed_high)
-	focus_label.text = str("Focus: ", lock_in_likelihood)
-	bribe_cost_label.text = str("Cost to Bribe: $", cost_to_bribe)
-	bribe_amount_speed.text = str("Bribe Speed Impact: ", modifier_delta_on_bribe)
-	bribe_amount_focus.text = str("Bribe Focus Impact: ", lock_in_delta_on_bribe)
+	speed_label.text = str("Speed: ", str(speed_low).left(4), " - ", str(speed_high).left(4))
+	focus_label.text = str("Focus: ", str(lock_in_likelihood).left(4))
+	bribe_cost_label.text = str("Cost to Bribe: $", str(cost_to_bribe).left(4))
+	bribe_amount_speed.text = str("Bribe Speed Impact: ", str(modifier_delta_on_bribe).left(4))
+	bribe_amount_focus.text = str("Bribe Focus Impact: ", str(lock_in_delta_on_bribe).left(4))
 
 
 func show_popup() -> void:

@@ -63,4 +63,4 @@ layout_mode = 2
 position = Vector2(80, 448)
 
 [node name="MoneyUi" parent="." unique_id=1327274327 instance=ExtResource("4_jyhfs")]
-position = Vector2(64, 64)
+position = Vector2(56, 32)

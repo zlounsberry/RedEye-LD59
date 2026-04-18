@@ -23,9 +23,10 @@ var odds_to_one: int
 var horf_name_first: String
 var horf_name_last: String
 
-var speed_modifier_delta_on_bribe: float = randf_range(0.025, 0.05)
-var lock_in_delta_on_bribe: float = randf_range(0.025, 0.05)
-var cost_to_bribe: int = randi_range(100, 500)
+var speed_modifier_delta_on_bribe: float = randf_range(0.005, 0.0075)
+var lock_in_delta_on_bribe: float = randf_range(0.035, 0.075)
+var cost_to_bribe: int = randi_range(250, 750)
+var name_is_unique: bool = false
 
 
 func _ready() -> void:
@@ -41,13 +42,28 @@ func assign_values_based_on_id() -> void:
 	speed_low = GameData.HORF_DICT[horf_id]["low_speed"]
 	speed_high = GameData.HORF_DICT[horf_id]["high_speed"]
 	lock_in_likelihood = GameData.HORF_DICT[horf_id]["lock_in_likelihood"]
+	_assign_name()
+	if not name_is_unique:
+		print("running again for ", self)
+		_assign_name()
+	_populate_stats_popup()
+
+
+func _assign_name() -> void:
 	var first_name_array: Array = GameData.HORF_FIRST_NAME_ARRAY.duplicate()
 	var last_name_array: Array = GameData.HORF_LAST_NAME_ARRAY.duplicate()
 	first_name_array.shuffle()
 	last_name_array.shuffle()
 	horf_name_first = first_name_array[0]
 	horf_name_last = last_name_array[0]
-	_populate_stats_popup()
+	for horf_child in get_tree().get_nodes_in_group("horf"):
+		if horf_child.horf_name_first == horf_name_first and horf_child.horf_name_last == horf_name_last:
+			if not horf_child == self:
+				name_is_unique = false
+				prints(horf_name_first, horf_name_last, "taken for", self, "by", horf_child)
+				return
+	print("name not taken!")
+	name_is_unique = true
 
 
 func _connect_signals() -> void:
@@ -92,6 +108,7 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 		lock_in_likelihood += lock_in_delta_on_bribe
 	speed_low *= speed_modifier
 	speed_high *= speed_modifier
+	_populate_stats_popup()
 
 
 func _race_start() -> void:

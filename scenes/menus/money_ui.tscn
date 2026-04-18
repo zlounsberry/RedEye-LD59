@@ -95,18 +95,19 @@ script = ExtResource("1_nnlsb")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1329728454]
 custom_minimum_size = Vector2(64, 64)
-offset_right = 64.0
+offset_right = 96.0
 offset_bottom = 64.0
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer" unique_id=20629298]
-position = Vector2(32, 32)
+position = Vector2(48, 36)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_cqbj6")
 
 [node name="MoneyCount" type="Label" parent="." unique_id=346007995]
 offset_top = 64.0
-offset_right = 64.0
-offset_bottom = 87.99985
+offset_right = 96.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 32
 text = "$1000"
 horizontal_alignment = 1
 vertical_alignment = 1
