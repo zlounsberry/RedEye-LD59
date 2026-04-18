@@ -1,5 +1,7 @@
 extends Control
 
+signal horf_ids_populated
+
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 
 @onready var day_title: RichTextLabel = $DayTitle
@@ -9,6 +11,7 @@ const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 @onready var horf_2: Node2D = $VBoxContainer/MarginContainer3/Horf
 @onready var horf_3: Node2D = $VBoxContainer/MarginContainer4/Horf
 @onready var horf_4: Node2D = $VBoxContainer/MarginContainer5/Horf
+@onready var horf_bet_dict: Dictionary = {}
 
 
 func _ready() -> void:
@@ -19,6 +22,13 @@ func _ready() -> void:
 		day_title.text = str("[center][shake]Day ", GameData.current_day)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
+	await horf_ids_populated
+	_populate_betting_menu()
+
+
+func _connect_signals() -> void:
+	Signals.horf_is_winner.connect(_horf_wins)
+	Signals.player_placed_bet.connect(_on_player_placed_bet)
 
 
 func _assign_horf_ids(random_horf_id_array: Array) -> void:
@@ -26,13 +36,23 @@ func _assign_horf_ids(random_horf_id_array: Array) -> void:
 	for horf_child in get_tree().get_nodes_in_group("horf"):
 		horf_child.horf_id = random_horf_id_array[array_position_count]
 		horf_child.assign_values_based_on_id()
+		horf_bet_dict[random_horf_id_array[array_position_count]] = 0
 		array_position_count += 1
+	horf_ids_populated.emit()
 
 
 func _randomize_id_array() -> Array:
 	var random_horf_id_array = HORF_ID_ARRAY.duplicate()
 	random_horf_id_array.shuffle()
 	return random_horf_id_array
+
+
+func _on_player_placed_bet(amount: int, horf_id: int) -> void:
+	Signals.update_money.emit(-amount)
+	if horf_bet_dict.has(horf_id):
+		prints(amount, "on horf", horf_id)
+		horf_bet_dict[horf_id] = amount
+
 
 func _populate_betting_menu() -> void:
 #	 Don't judge me it's a jam!
@@ -61,10 +81,7 @@ func _populate_betting_menu() -> void:
 	place_bets_menu.horf_name_first_4  = horf_4.horf_name_first
 	place_bets_menu.horf_name_last_4 = horf_4.horf_name_last
 	place_bets_menu.horf_photo_path_4 = horf_4.horf_sprite_string
-
-
-func _connect_signals() -> void:
-	Signals.horf_is_winner.connect(_horf_wins)
+	place_bets_menu.populate_text()
 
 
 func _horf_wins(horf_id: int) -> void:

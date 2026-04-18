@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="1_00vqn"]
 [ext_resource type="Script" uid="uid://0sgscfl3owsa" path="res://scripts/horf.gd" id="1_tgtbq"]
+[ext_resource type="Texture2D" uid="uid://b6r00itrrxmyd" path="res://resources/sprites/lock.png" id="3_6nhuy"]
 [ext_resource type="PackedScene" uid="uid://35o752mce1go" path="res://scenes/menus/stats_popup.tscn" id="3_s5b6s"]
 
 [sub_resource type="Curve2D" id="Curve2D_tgtbq"]
@@ -76,6 +77,84 @@ _data = {
 &"run": SubResource("Animation_6nhuy")
 }
 
+[sub_resource type="Animation" id="Animation_60tau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Emote:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Emote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_txn1j"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Emote:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o5j7h"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Emote:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Emote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(36, -36), Vector2(32, -32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hw04"]
+_data = {
+&"RESET": SubResource("Animation_60tau"),
+&"idle": SubResource("Animation_txn1j"),
+&"show": SubResource("Animation_o5j7h")
+}
+
 [node name="Horf" type="Node2D" unique_id=1909564379 groups=["horf"]]
 script = ExtResource("1_tgtbq")
 
@@ -91,6 +170,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_00vqn")
 
 [node name="Emote" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=729160741]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_6nhuy")
 
 [node name="MouseHitbox" type="Area2D" parent="Path2D/PathFollow2D" unique_id=505528379]
 
@@ -101,11 +184,13 @@ shape = SubResource("RectangleShape2D_6nhuy")
 libraries/ = SubResource("AnimationLibrary_60tau")
 
 [node name="EmoteAnim" type="AnimationPlayer" parent="." unique_id=311222826]
+libraries/ = SubResource("AnimationLibrary_4hw04")
 
 [node name="ChangeSpeed" type="Timer" parent="." unique_id=639052183]
 wait_time = 3.0
 
 [node name="LockIn" type="Timer" parent="." unique_id=1364391282]
+wait_time = 3.0
 
 [node name="StatsPopup" parent="." unique_id=150412088 instance=ExtResource("3_s5b6s")]
 scale = Vector2(1e-05, 1e-05)

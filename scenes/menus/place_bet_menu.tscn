@@ -94,7 +94,6 @@ clip_text = true
 [node name="Odds" type="Label" parent="VBoxContainer/Horf0" unique_id=1524371816]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "6:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -130,7 +129,6 @@ clip_text = true
 [node name="Odds" type="Label" parent="VBoxContainer/Horf1" unique_id=1642071547]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "6:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -167,7 +165,6 @@ clip_text = true
 [node name="Odds" type="Label" parent="VBoxContainer/Horf2" unique_id=1076081015]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "6:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -203,7 +200,6 @@ clip_text = true
 [node name="Odds" type="Label" parent="VBoxContainer/Horf3" unique_id=371992038]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "6:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -239,7 +235,6 @@ clip_text = true
 [node name="Odds" type="Label" parent="VBoxContainer/Horf4" unique_id=863759794]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "6:1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -260,3 +255,9 @@ expand_to_text_length = true
 [node name="LockIn" type="Button" parent="VBoxContainer/Horf4" unique_id=1043358973]
 layout_mode = 2
 text = "LOCK IN"
+
+[connection signal="pressed" from="VBoxContainer/Horf0/LockIn" to="." method="_on_lock_in_0_pressed"]
+[connection signal="pressed" from="VBoxContainer/Horf1/LockIn" to="." method="_on_lock_in_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Horf2/LockIn" to="." method="_on_lock_in_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Horf3/LockIn" to="." method="_on_lock_in_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Horf4/LockIn" to="." method="_on_lock_in_4_pressed"]

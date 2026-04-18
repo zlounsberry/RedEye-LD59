@@ -1,5 +1,7 @@
 extends Panel
 
+const MAX_BUTTON_COUNT: = 5
+
 #Just copypasta from stats_popup, not DRY but it's a jam shut up
 @onready var name_0: Label = $VBoxContainer/Horf0/Name
 @onready var odds_0: Label = $VBoxContainer/Horf0/Odds
@@ -26,6 +28,8 @@ extends Panel
 @onready var sprite_4: Sprite2D = $VBoxContainer/Horf4/MarginContainer/Sprite2D
 @onready var line_edit_4: LineEdit = $VBoxContainer/Horf4/LineEdit
 @onready var lock_in_4: Button = $VBoxContainer/Horf4/LockIn
+
+@onready var button_press_count: int = 0
 
 var odds_to_one_0: int
 var horf_id_0: int
@@ -70,15 +74,92 @@ func populate_text() -> void:
 	name_4.text = str(horf_name_first_4, " ", horf_name_last_4)
 	odds_4.text = str(odds_to_one_4, ":1")
 	sprite_4.texture = load(horf_photo_path_4)
+	print('text populated', odds_to_one_4)
 
 
 func show_popup() -> void:
 	var tween: Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING).set_parallel()
-	tween.tween_property(self, "modulate:a", Vector2.ONE, 0.25)
+	tween.tween_property(self, "modulate:a", 1, 0.25)
 
 
 func close_popup() -> void:
 	var tween: Tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SPRING).set_parallel()
-	tween.tween_property(self, "modulate:a", Vector2.ZERO, 0.25)
+	tween.tween_property(self, "modulate:a", 0, 0.25)
 	await tween.finished
+	Signals.bets_placed.emit()
 	self.queue_free()
+
+
+func _on_lock_in_0_pressed() -> void:
+	if line_edit_0.text.to_int() > GameData.current_money:
+		return
+	lock_in_0.disabled = true
+	var amount: int
+	if line_edit_0.text == "":
+		amount = 0
+	else:
+		amount = line_edit_0.text.to_int()
+	Signals.player_placed_bet.emit(amount, horf_id_0)
+	button_press_count += 1
+	if button_press_count >= MAX_BUTTON_COUNT:
+		close_popup()
+
+
+func _on_lock_in_1_pressed() -> void:
+	if line_edit_1.text.to_int() > GameData.current_money:
+		return
+	lock_in_1.disabled = true
+	var amount: int
+	if line_edit_1.text == "":
+		amount = 0
+	else:
+		amount = line_edit_1.text.to_int()
+	Signals.player_placed_bet.emit(amount, horf_id_1)
+	button_press_count += 1
+	if button_press_count >= MAX_BUTTON_COUNT:
+		close_popup()
+
+
+func _on_lock_in_2_pressed() -> void:
+	if line_edit_2.text.to_int() > GameData.current_money:
+		return
+	lock_in_2.disabled = true
+	var amount: int
+	if line_edit_2.text == "":
+		amount = 0
+	else:
+		amount = line_edit_2.text.to_int()
+	Signals.player_placed_bet.emit(amount, horf_id_2)
+	button_press_count += 1
+	if button_press_count >= MAX_BUTTON_COUNT:
+		close_popup()
+
+
+func _on_lock_in_3_pressed() -> void:
+	if line_edit_3.text.to_int() > GameData.current_money:
+		return
+	lock_in_3.disabled = true
+	var amount: int
+	if line_edit_3.text == "":
+		amount = 0
+	else:
+		amount = line_edit_3.text.to_int()
+	Signals.player_placed_bet.emit(amount, horf_id_3)
+	button_press_count += 1
+	if button_press_count >= MAX_BUTTON_COUNT:
+		close_popup()
+
+
+func _on_lock_in_4_pressed() -> void:
+	if line_edit_4.text.to_int() > GameData.current_money:
+		return
+	lock_in_4.disabled = true
+	var amount: int
+	if line_edit_4.text == "":
+		amount = 0
+	else:
+		amount = line_edit_4.text.to_int()
+	Signals.player_placed_bet.emit(amount, horf_id_4)
+	button_press_count += 1
+	if button_press_count >= MAX_BUTTON_COUNT:
+		close_popup()

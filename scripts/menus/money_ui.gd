@@ -27,7 +27,7 @@ func _change_number(delta: int) -> void:
 		else:
 			GameData.current_money -= money_iteration
 		money_count.text = str("$", GameData.current_money)
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.025).timeout
 	anim.play("RESET")
 	Signals.money_updated.emit()
 	get_tree().paused = false

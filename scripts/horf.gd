@@ -1,11 +1,13 @@
 extends Node2D
 
 const VELOCITY_UPDATES: int = 5
+const LOCK = preload("uid://b6r00itrrxmyd")
 
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
 @onready var lock_in_timer: Timer = $LockIn
 @onready var horf_sprite: Sprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
+@onready var emote_sprite: Sprite2D = $Path2D/PathFollow2D/Emote
 @onready var horf_anim: AnimationPlayer = $HorfAnim
 @onready var emote_anim: AnimationPlayer = $EmoteAnim
 @onready var stats_popup: Panel = $StatsPopup
@@ -98,7 +100,6 @@ func _populate_stats_popup() -> void:
 
 
 func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
-	print("bribe jockey")
 	if is_bribed_to_be_worse:
 		speed_modifier -= speed_modifier_delta_on_bribe
 		lock_in_likelihood -= lock_in_delta_on_bribe
@@ -112,6 +113,7 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 
 func _race_start() -> void:
 	horf_anim.play("run")
+	$LockIn.start()
 	_update_current_speed()
 	$ChangeSpeed.start()
 
@@ -134,23 +136,27 @@ func _on_change_speed_timeout() -> void:
 func _on_lock_in_timeout() -> void:
 	if locked_in:
 		return
+	lock_in_timer.stop()
 	var random_float: float = randf()
 	if random_float <= lock_in_likelihood:
 		locked_in = true
+		emote_sprite.texture = LOCK
+		emote_anim.play("show")
+		await emote_anim.animation_finished
+		emote_anim.play("idle")
 	await get_tree().create_timer(3.0).timeout
 	locked_in = false
-	change_speed_timer.start()
+	lock_in_timer.start()
+	emote_anim.play_backwards("show")
 
 
 func _on_mouse_hitbox_mouse_entered() -> void:
 	for popup_child in get_tree().get_nodes_in_group("stats_popup"):
 		popup_child.hide_popup()
-	print("show_stats_popup")
 	stats_popup.show_popup()
 
 
 func _on_mouse_hitbox_mouse_exited() -> void:
-	print("hide_popup")
 	stats_popup.hide_popup()
 
 
