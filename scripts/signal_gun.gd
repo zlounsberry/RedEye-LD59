@@ -7,6 +7,14 @@ extends Node2D
 @onready var race_started: bool = false
 
 
+func _ready() -> void:
+	_connect_signals()
+
+
+func _connect_signals() -> void:
+	Signals.bets_placed.connect(_enable_button)
+
+
 func _start_race() -> void:
 	fire.disabled = true
 	fire.text = '\"Misfire\"'
@@ -31,4 +39,8 @@ func _on_fire_pressed() -> void:
 
 
 func _on_cooldown_timeout() -> void:
+	fire.disabled = false
+
+
+func _enable_button() -> void:
 	fire.disabled = false

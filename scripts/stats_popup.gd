@@ -3,6 +3,7 @@ extends Panel
 const POPUP_GLOBAL_POSITION: = Vector2(352.0, 94.0)
 
 @onready var name_label: Label = $VBoxContainer/Name
+@onready var horf_sprite: Sprite2D = $VBoxContainer/MarginContainer/HorfSprite
 @onready var odds_label: Label = $VBoxContainer/Odds
 @onready var speed_label: Label = $VBoxContainer/Speed
 @onready var focus_label: Label = $VBoxContainer/Focus
@@ -23,6 +24,7 @@ var horf_name_last: String
 var modifier_delta_on_bribe: int
 var lock_in_delta_on_bribe: int
 var cost_to_bribe: int
+var horf_sprite_string: String
 
 
 func populate_text() -> void:
@@ -33,6 +35,9 @@ func populate_text() -> void:
 	bribe_cost_label.text = str("Cost to Bribe: $", str(cost_to_bribe).left(4))
 	bribe_amount_speed.text = str("Bribe Speed Impact: ", str(modifier_delta_on_bribe).left(4))
 	bribe_amount_focus.text = str("Bribe Focus Impact: ", str(lock_in_delta_on_bribe).left(4))
+	if horf_sprite_string == "":
+		return
+	horf_sprite.texture = load(horf_sprite_string)
 
 
 func show_popup() -> void:

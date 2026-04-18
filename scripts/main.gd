@@ -3,6 +3,12 @@ extends Control
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 
 @onready var day_title: RichTextLabel = $DayTitle
+@onready var place_bets_menu: Panel = $PlaceBetsMenu
+@onready var horf_0: Node2D = $VBoxContainer/MarginContainer/Horf
+@onready var horf_1: Node2D = $VBoxContainer/MarginContainer2/Horf
+@onready var horf_2: Node2D = $VBoxContainer/MarginContainer3/Horf
+@onready var horf_3: Node2D = $VBoxContainer/MarginContainer4/Horf
+@onready var horf_4: Node2D = $VBoxContainer/MarginContainer5/Horf
 
 
 func _ready() -> void:
@@ -27,6 +33,34 @@ func _randomize_id_array() -> Array:
 	var random_horf_id_array = HORF_ID_ARRAY.duplicate()
 	random_horf_id_array.shuffle()
 	return random_horf_id_array
+
+func _populate_betting_menu() -> void:
+#	 Don't judge me it's a jam!
+	place_bets_menu.odds_to_one_0 = horf_0.odds_to_one
+	place_bets_menu.horf_id_0 = horf_0.horf_id
+	place_bets_menu.horf_name_first_0  = horf_0.horf_name_first
+	place_bets_menu.horf_name_last_0 = horf_0.horf_name_last
+	place_bets_menu.horf_photo_path_0 = horf_0.horf_sprite_string
+	place_bets_menu.odds_to_one_1 = horf_1.odds_to_one
+	place_bets_menu.horf_id_1 = horf_1.horf_id
+	place_bets_menu.horf_name_first_1  = horf_1.horf_name_first
+	place_bets_menu.horf_name_last_1 = horf_1.horf_name_last
+	place_bets_menu.horf_photo_path_1 = horf_1.horf_sprite_string
+	place_bets_menu.odds_to_one_2 = horf_2.odds_to_one
+	place_bets_menu.horf_id_2 = horf_2.horf_id
+	place_bets_menu.horf_name_first_2  = horf_2.horf_name_first
+	place_bets_menu.horf_name_last_2 = horf_2.horf_name_last
+	place_bets_menu.horf_photo_path_2 = horf_2.horf_sprite_string
+	place_bets_menu.odds_to_one_3 = horf_3.odds_to_one
+	place_bets_menu.horf_id_3 = horf_3.horf_id
+	place_bets_menu.horf_name_first_3  = horf_3.horf_name_first
+	place_bets_menu.horf_name_last_3 = horf_3.horf_name_last
+	place_bets_menu.horf_photo_path_3 = horf_3.horf_sprite_string
+	place_bets_menu.odds_to_one_4 = horf_4.odds_to_one
+	place_bets_menu.horf_id_4 = horf_4.horf_id
+	place_bets_menu.horf_name_first_4  = horf_4.horf_name_first
+	place_bets_menu.horf_name_last_4 = horf_4.horf_name_last
+	place_bets_menu.horf_photo_path_4 = horf_4.horf_sprite_string
 
 
 func _connect_signals() -> void:

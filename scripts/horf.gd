@@ -23,6 +23,7 @@ var horf_id: int
 var odds_to_one: int
 var horf_name_first: String
 var horf_name_last: String
+var horf_sprite_string: String
 
 var speed_modifier_delta_on_bribe: float = randf_range(0.005, 0.0075)
 var lock_in_delta_on_bribe: float = randf_range(0.035, 0.075)

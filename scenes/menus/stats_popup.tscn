@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://35o752mce1go"]
 
-[ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_0twoy"]
-[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_41dsf"]
+[ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_hpipu"]
+[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_dyeul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41dsf"]
 bg_color = Color(0.13605595, 0.13605595, 0.13605595, 1)
@@ -12,7 +12,7 @@ custom_minimum_size = Vector2(256, 288)
 offset_right = 256.0
 offset_bottom = 256.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
-script = ExtResource("1_0twoy")
+script = ExtResource("1_hpipu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656779253]
 layout_mode = 1
@@ -38,7 +38,7 @@ layout_mode = 2
 
 [node name="HorfSprite" type="Sprite2D" parent="VBoxContainer/MarginContainer" unique_id=1617002537]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_41dsf")
+texture = ExtResource("2_dyeul")
 centered = false
 offset = Vector2(160, 0)
 
