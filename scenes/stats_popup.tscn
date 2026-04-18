@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://35o752mce1go"]
+
+[ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_0twoy"]
+[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_41dsf"]
+
+[node name="StatsPopup" type="Panel" unique_id=150412088]
+custom_minimum_size = Vector2(256, 256)
+script = ExtResource("1_0twoy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656779253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=376505193]
+layout_mode = 2
+text = "Horf Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1950521882]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HorfSprite" type="Sprite2D" parent="VBoxContainer/MarginContainer" unique_id=1617002537]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_41dsf")
+centered = false
+offset = Vector2(160, 0)
+
+[node name="Odds" type="Label" parent="VBoxContainer" unique_id=1735039997]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="VBoxContainer" unique_id=884557266]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Focus" type="Label" parent="VBoxContainer" unique_id=1970194218]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BribeCost" type="Label" parent="VBoxContainer" unique_id=935952286]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BribeAmount" type="Label" parent="VBoxContainer" unique_id=536702168]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
