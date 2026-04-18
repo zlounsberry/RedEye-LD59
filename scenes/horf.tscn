@@ -2,12 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="1_00vqn"]
 [ext_resource type="Script" uid="uid://0sgscfl3owsa" path="res://scripts/horf.gd" id="1_tgtbq"]
+[ext_resource type="PackedScene" uid="uid://35o752mce1go" path="res://scenes/stats_popup.tscn" id="3_s5b6s"]
 
 [sub_resource type="Curve2D" id="Curve2D_tgtbq"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 452, 0, 576, 0)
 }
 point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nhuy"]
+size = Vector2(64, 64)
 
 [sub_resource type="Animation" id="Animation_s5b6s"]
 length = 0.001
@@ -72,7 +76,7 @@ _data = {
 &"run": SubResource("Animation_6nhuy")
 }
 
-[node name="Horf" type="Node2D" unique_id=1909564379]
+[node name="Horf" type="Node2D" unique_id=1909564379 groups=["horf"]]
 script = ExtResource("1_tgtbq")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=710289219]
@@ -88,6 +92,11 @@ texture = ExtResource("1_00vqn")
 
 [node name="Emote" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=729160741]
 
+[node name="MouseHitbox" type="Area2D" parent="Path2D/PathFollow2D" unique_id=505528379]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/MouseHitbox" unique_id=2090914795]
+shape = SubResource("RectangleShape2D_6nhuy")
+
 [node name="HorfAnim" type="AnimationPlayer" parent="." unique_id=875844191]
 libraries/ = SubResource("AnimationLibrary_60tau")
 
@@ -95,9 +104,35 @@ libraries/ = SubResource("AnimationLibrary_60tau")
 
 [node name="ChangeSpeed" type="Timer" parent="." unique_id=639052183]
 wait_time = 3.0
-autostart = true
 
 [node name="LockIn" type="Timer" parent="." unique_id=1364391282]
 
+[node name="StatsPopup" parent="." unique_id=150412088 instance=ExtResource("3_s5b6s")]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2043282314]
+offset_left = -87.0
+offset_top = -46.0
+offset_right = -41.0
+offset_bottom = 47.0
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=565734443]
+layout_mode = 2
+text = "BRIBE"
+
+[node name="LoseButton" type="Button" parent="VBoxContainer" unique_id=241120441]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "Lose"
+
+[node name="WinButton" type="Button" parent="VBoxContainer" unique_id=1245382571]
+layout_mode = 2
+text = "Win"
+
+[connection signal="mouse_entered" from="Path2D/PathFollow2D/MouseHitbox" to="." method="_on_mouse_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Path2D/PathFollow2D/MouseHitbox" to="." method="_on_mouse_hitbox_mouse_exited"]
 [connection signal="timeout" from="ChangeSpeed" to="." method="_on_change_speed_timeout"]
 [connection signal="timeout" from="LockIn" to="." method="_on_lock_in_timeout"]
+[connection signal="pressed" from="VBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/WinButton" to="." method="_on_win_button_pressed"]

@@ -25,6 +25,11 @@ GameData="*uid://bx0ixac7xlukr"
 window/size/viewport_width=960
 window/size/viewport_height=540
 
+[global_group]
+
+stats_popup=""
+horf=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

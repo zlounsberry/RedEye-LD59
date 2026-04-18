@@ -51,9 +51,44 @@ const HORF_DICT: Dictionary = {
 	},
 }
 
+const HORF_FIRST_NAME_ARRAY: Array = [
+	"Rice And",
+	"Beans On",
+	"My Little",
+	"Sour",
+	"Monday's",
+	"Princess",
+	"Horny",
+	"I Hate",
+	"Monstrous",
+	"Shotgun",
+	"Copyright",
+]
+
+const HORF_LAST_NAME_ARRAY: Array = [
+	"Beans",
+	"Toast",
+	"Horfy",
+	"Lasagna",
+	"Dumptruck",
+	"Toad",
+	"Wellington III",
+	"Shotglass",
+	"Axolotl",
+	"Candy",
+	"Wedding",
+	"Sandwich",
+	"Infringement",
+]
+
+
 @onready var current_money: int = 5000
 @onready var current_day: int = 1
 
 @onready var main_volume: float = 0.8
 @onready var sfx_volume: float = 0.8
 @onready var music_volume: float = 0.8
+
+
+func _ready() -> void:
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
