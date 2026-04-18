@@ -16,6 +16,7 @@ func _connect_signals() -> void:
 
 
 func _start_race() -> void:
+	race_started = true
 	fire.disabled = true
 	fire.text = '\"Misfire\"'
 	cooldown.start()
@@ -25,14 +26,17 @@ func _start_race() -> void:
 
 
 func _misfire_gun() -> void:
+	print("_misfire_gun")
 	Signals.misfire_gun.emit()
 	gun.play("fire")
 	fire_sound.play()
-	cooldown.start()
+	fire.disabled = false
+	fire.text = 'No Ammo'
 
 
 func _on_fire_pressed() -> void:
 	if race_started:
+		print("misfiring _on_fire_pressed")
 		_misfire_gun()
 	else:
 		_start_race()

@@ -74,7 +74,6 @@ func populate_text() -> void:
 	name_4.text = str(horf_name_first_4, " ", horf_name_last_4)
 	odds_4.text = str(odds_to_one_4, ":1")
 	sprite_4.texture = load(horf_photo_path_4)
-	print('text populated', odds_to_one_4)
 
 
 func show_popup() -> void:

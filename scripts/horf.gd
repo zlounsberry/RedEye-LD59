@@ -2,6 +2,10 @@ extends Node2D
 
 const VELOCITY_UPDATES: int = 5
 const LOCK = preload("uid://b6r00itrrxmyd")
+const CONFUSED = preload("uid://cif4ww0qkyk26")
+const SCARED = preload("uid://cee0bckx7vjr2")
+const Z = preload("uid://jg5gpvumrfgl")
+
 
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
@@ -38,6 +42,16 @@ func _ready() -> void:
 	_connect_signals()
 
 
+func _physics_process(delta: float) -> void:
+	if race_over:
+		return
+	$Path2D/PathFollow2D/Horf/Locked.text = str(locked_in)
+	path_follow_2d.progress += (speed * delta * speed_modifier)
+	if path_follow_2d.progress_ratio >= 1.0:
+		print("horf wins!")
+		Signals.horf_is_winner.emit(horf_id)
+
+
 func assign_values_based_on_id() -> void:
 	if not GameData.HORF_DICT.has(horf_id):
 		print("out of range error")
@@ -68,17 +82,9 @@ func _assign_name() -> void:
 
 
 func _connect_signals() -> void:
+	Signals.misfire_gun.connect(_on_misfire_gun)
 	Signals.start_race.connect(_race_start)
 	Signals.horf_is_winner.connect(_race_over)
-
-
-func _physics_process(delta: float) -> void:
-	if race_over:
-		return
-	path_follow_2d.progress += (speed * delta * speed_modifier)
-	if path_follow_2d.progress_ratio >= 1.0:
-		print("horf wins!")
-		Signals.horf_is_winner.emit(horf_id)
 
 
 func _update_current_speed() -> void:
@@ -125,8 +131,23 @@ func _race_over(_horf_id: int) -> void:
 func _on_misfire_gun() -> void:
 	if locked_in:
 		return
+	lock_in_timer.stop()
+	change_speed_timer.stop()
 	speed = 0
+	emote_sprite.texture = SCARED
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
+	await get_tree().create_timer(6.0).timeout
+	emote_anim.play_backwards("show")
+	horf_anim.play("run")
+	_update_current_speed()
 	change_speed_timer.start()
+	lock_in_timer.start()
+
+
+func populate_bet_text(amount: int) -> void:
+	$Bet.text = str(amount)
 
 
 func _on_change_speed_timeout() -> void:
@@ -136,14 +157,16 @@ func _on_change_speed_timeout() -> void:
 func _on_lock_in_timeout() -> void:
 	if locked_in:
 		return
-	lock_in_timer.stop()
 	var random_float: float = randf()
-	if random_float <= lock_in_likelihood:
-		locked_in = true
-		emote_sprite.texture = LOCK
-		emote_anim.play("show")
-		await emote_anim.animation_finished
-		emote_anim.play("idle")
+	if random_float >= lock_in_likelihood:
+		locked_in = false
+		return
+	lock_in_timer.stop()
+	locked_in = true
+	emote_sprite.texture = LOCK
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
 	await get_tree().create_timer(3.0).timeout
 	locked_in = false
 	lock_in_timer.start()

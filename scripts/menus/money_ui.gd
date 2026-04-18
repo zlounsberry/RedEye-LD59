@@ -10,9 +10,7 @@ func _ready() -> void:
 
 
 func _change_number(delta: int) -> void:
-	print("_change_number")
 	get_tree().paused = true
-	anim.play("shake")
 	var new_value = GameData.current_money + delta
 	while GameData.current_money != new_value:
 		var money_iteration: int

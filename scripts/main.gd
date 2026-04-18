@@ -1,6 +1,8 @@
 extends Control
 
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
+const STRANGER = preload("uid://cjxlxx057f5gc")
+
 
 @onready var day_title: RichTextLabel = $DayTitle
 @onready var place_bets_menu: Panel = $PlaceBetsMenu
@@ -18,6 +20,13 @@ func _ready() -> void:
 		day_title.text = str("[center]Day ", GameData.current_day)
 	else:
 		day_title.text = str("[center][shake]Day ", GameData.current_day)
+		var stranger = STRANGER.instantiate()
+		stranger.text_id = 1
+		add_child(stranger)
+	if GameData.current_day == 1:
+		var stranger = STRANGER.instantiate()
+		stranger.text_id = 0
+		add_child(stranger)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
 	await get_tree().process_frame
@@ -53,6 +62,9 @@ func _on_player_placed_bet(amount: int, horf_id: int) -> void:
 	if horf_bet_dict.has(horf_id):
 		prints(amount, "on horf", horf_id)
 		horf_bet_dict[horf_id] = amount
+	for horf_child in get_tree().get_nodes_in_group("horf"):
+		if horf_id == horf_child.horf_id:
+			horf_child.populate_bet_text(amount)
 
 
 func _populate_betting_menu() -> void:

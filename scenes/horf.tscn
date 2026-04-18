@@ -40,6 +40,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path2D/PathFollow2D/Horf:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6nhuy"]
 resource_name = "run"
@@ -71,10 +83,29 @@ tracks/1/keys = {
 "values": [Vector2(0.5, 0.5), Vector2(0.55, 0.55), Vector2(0.5, 0.5), Vector2(0.55, 0.55), Vector2(0.5, 0.5)]
 }
 
+[sub_resource type="Animation" id="Animation_4hw04"]
+resource_name = "scared"
+length = 0.52
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/Horf:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.099999994, 0.12, 0.14, 0.16, 0.17999999, 0.19999999, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.33999997, 0.35999998, 0.38, 0.39999998, 0.42, 0.44, 0.46, 0.48, 0.49999997, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0, 0), Vector2(-1, -1), Vector2(0, 0), Vector2(2, -2), Vector2(0, 0), Vector2(-2, 2), Vector2(0, 0), Vector2(1, 1), Vector2(0, 0), Vector2(-1, -1), Vector2(0, 0), Vector2(2, -2), Vector2(0, 0), Vector2(-2, 2), Vector2(0, 0), Vector2(1, 1), Vector2(0, 0), Vector2(-1, -1), Vector2(0, 0), Vector2(2, -2), Vector2(0, 0), Vector2(-2, 2), Vector2(0, 0), Vector2(1, 1), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_60tau"]
 _data = {
 &"RESET": SubResource("Animation_s5b6s"),
-&"run": SubResource("Animation_6nhuy")
+&"run": SubResource("Animation_6nhuy"),
+&"scared": SubResource("Animation_4hw04")
 }
 
 [sub_resource type="Animation" id="Animation_60tau"]
@@ -169,6 +200,10 @@ loop = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_00vqn")
 
+[node name="Locked" type="Label" parent="Path2D/PathFollow2D/Horf" unique_id=1881174847]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Emote" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=729160741]
 texture_filter = 1
 texture_repeat = 1
@@ -214,6 +249,15 @@ text = "Lose"
 [node name="WinButton" type="Button" parent="VBoxContainer" unique_id=1245382571]
 layout_mode = 2
 text = "Win"
+
+[node name="Bet" type="Label" parent="." unique_id=1937185740]
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="Path2D/PathFollow2D/MouseHitbox" to="." method="_on_mouse_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Path2D/PathFollow2D/MouseHitbox" to="." method="_on_mouse_hitbox_mouse_exited"]
