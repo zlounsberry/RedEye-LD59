@@ -66,6 +66,10 @@ var horf_name_last_4: String
 var horf_photo_4
 
 
+func _ready() -> void:
+	Signals.money_updated.emit(GameData.current_money)
+
+
 func populate_text_and_photo() -> void:
 	name_0.text = str(horf_name_first_0, " ", horf_name_last_0)
 	odds_0.text = str(odds_to_one_0, ":1")

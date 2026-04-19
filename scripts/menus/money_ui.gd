@@ -15,7 +15,9 @@ func _change_number(delta: int) -> void:
 	var new_value = GameData.current_money + delta
 	while GameData.current_money != new_value:
 		var money_iteration: int
-		if abs(GameData.current_money - new_value) > 500:
+		if abs(GameData.current_money - new_value) > 2000:
+			money_iteration = 2000
+		elif abs(GameData.current_money - new_value) > 500:
 			money_iteration = 500
 		elif abs(GameData.current_money - new_value) > 100:
 			money_iteration = 100
@@ -33,20 +35,37 @@ func _change_number(delta: int) -> void:
 		await get_tree().create_timer(0.025).timeout
 	anim.play("RESET")
 	var tween_size: float
+	var tween_position_y: float
 	if GameData.current_money <= 0:
 		tween_size = 0.0
+		tween_position_y = 120
 	elif GameData.current_money > 0 and GameData.current_money <= 100:
 		tween_size = 0.1
+		tween_position_y = 120
 	elif GameData.current_money > 100 and GameData.current_money <= 1000:
 		tween_size = 0.2
+		tween_position_y = 114
 	elif GameData.current_money > 1000 and GameData.current_money <= 10000:
 		tween_size = 0.3
+		tween_position_y = 100
 	elif GameData.current_money > 10000 and GameData.current_money <= 50000:
 		tween_size = 0.4
+		tween_position_y = 90
 	elif GameData.current_money > 10000 and GameData.current_money <= 50000:
 		tween_size = 0.5
-	var tween: Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+		tween_position_y = 82
+	elif GameData.current_money > 10000 and GameData.current_money <= 50000:
+		tween_size = 0.6
+		tween_position_y = 74
+	elif GameData.current_money > 50000 and GameData.current_money <= 100000:
+		tween_size = 0.7
+		tween_position_y = 58
+	else:
+		tween_size = 0.8
+		tween_position_y = 42
+	var tween: Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING).set_parallel()
 	tween.tween_property(bag_sprite, "scale", Vector2(tween_size,tween_size), 0.5)
+	tween.tween_property(bag_sprite, "position:y", tween_position_y, 0.5)
 	await get_tree().process_frame
 	if is_inside_tree():
 		get_tree().paused = false

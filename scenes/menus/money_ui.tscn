@@ -787,11 +787,11 @@ offset_right = 128.0
 offset_bottom = 128.0
 
 [node name="BagSprite" type="AnimatedSprite2D" parent="MarginContainer" unique_id=1821377120]
-position = Vector2(64, 64)
-scale = Vector2(0.1, 0.1)
+position = Vector2(64, 62)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_mv58s")
 autoplay = "default"
-frame_progress = 0.45407644
+frame_progress = 0.5819287
 
 [node name="MoneyCount" type="Label" parent="." unique_id=346007995]
 offset_top = 128.0
