@@ -71,7 +71,7 @@ layout_mode = 2
 [node name="Horf" parent="VBoxContainer/MarginContainer5" unique_id=2019939930 instance=ExtResource("2_0wfyh")]
 
 [node name="GunContainer" parent="." unique_id=1881853301 instance=ExtResource("3_sugp2")]
-position = Vector2(188, 966)
+position = Vector2(185, 812)
 
 [node name="MoneyUi" parent="." unique_id=1327274327 instance=ExtResource("4_jyhfs")]
 position = Vector2(132, 170)
@@ -93,7 +93,19 @@ text = "[center]DAY 12"
 fit_content = true
 
 [node name="PlaceBetsMenu" parent="." unique_id=150412088 instance=ExtResource("5_tbgi4")]
+visible = false
 layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=194223788]
 offset = Vector2(960, 540)
+
+[node name="RestartGame" type="Button" parent="." unique_id=20824447]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 993.0
+offset_right = 237.0
+offset_bottom = 1058.0
+text = "Restart Game
+"
+
+[connection signal="pressed" from="RestartGame" to="." method="_on_restart_game_pressed"]

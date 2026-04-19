@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_61ibx"]
 [ext_resource type="Script" uid="uid://d3t01bb7dcv5" path="res://scripts/text_popup.gd" id="1_kg7ay"]
 [ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="2_61ibx"]
+[ext_resource type="FontFile" uid="uid://73vbxn2iturb" path="res://resources/fonts/Lady Radical.ttf" id="4_b5gfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5gfs"]
 shader = ExtResource("2_61ibx")
@@ -27,7 +28,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="." unique_id=1566044615]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=593103238]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09803922, 0.23921569, 0.24705882, 0.5019608)
+
+[node name="DeadLabel" type="RichTextLabel" parent="." unique_id=1566044615]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,9 +48,88 @@ anchor_bottom = 0.5
 offset_left = -688.0
 offset_top = -84.5
 offset_right = 688.0
-offset_bottom = 84.5
+offset_bottom = 10.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.61960787, 0.15686275, 0.20784314, 1)
+theme_override_fonts/normal_font = ExtResource("4_b5gfs")
 bbcode_enabled = true
-text = "[center]okay cool"
+text = "[center][shake]YOU         DIED"
 fit_content = true
+
+[node name="WinLabel" type="RichTextLabel" parent="." unique_id=473137322]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -84.5
+offset_right = 688.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_b5gfs")
+bbcode_enabled = true
+text = "[center][shake]You're  Out  Of Debt!        You  Win!"
+fit_content = true
+
+[node name="HorseWins" type="RichTextLabel" parent="." unique_id=1957915886]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -84.5
+offset_right = 688.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_b5gfs")
+bbcode_enabled = true
+text = "[center][shake]YOU         DIED"
+fit_content = true
+
+[node name="HorseWinsValue" type="RichTextLabel" parent="." unique_id=172925864]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -84.5
+offset_right = 688.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_b5gfs")
+bbcode_enabled = true
+text = "[center][shake]YOU         DIED"
+fit_content = true
+
+[node name="RestartGame" type="Button" parent="." unique_id=484668903]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 993.0
+offset_right = 237.0
+offset_bottom = 1058.0
+text = "Restart Game
+"
+
+[node name="CloseWindow" type="Button" parent="." unique_id=1416150838]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 598.0
+offset_right = 1063.0
+offset_bottom = 663.0
+text = "Restart Game
+"
+
+[connection signal="pressed" from="RestartGame" to="." method="_on_restart_game_pressed"]
+[connection signal="pressed" from="CloseWindow" to="." method="_on_close_window_pressed"]

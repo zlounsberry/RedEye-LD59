@@ -20,13 +20,10 @@ func _ready() -> void:
 		day_title.text = str("[center]Day ", GameData.current_day)
 	else:
 		day_title.text = str("[center][shake]Day ", GameData.current_day)
+	if GameData.current_day == 1:
 		var stranger = STRANGER.instantiate()
-		stranger.text_id = 1
+		stranger.text_id = 0
 		add_child(stranger)
-	#if GameData.current_day == 1:
-		#var stranger = STRANGER.instantiate()
-		#stranger.text_id = 0
-		#add_child(stranger)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
 	await get_tree().process_frame
@@ -43,6 +40,7 @@ func _input(event: InputEvent) -> void:
 func _connect_signals() -> void:
 	Signals.horf_is_winner.connect(_on_horf_is_winner)
 	Signals.player_placed_bet.connect(_on_player_placed_bet)
+	Signals.restart_game.connect(_on_restart_game)
 
 
 func _assign_horf_ids(random_horf_id_array: Array) -> void:
@@ -59,7 +57,15 @@ func _assign_horf_ids(random_horf_id_array: Array) -> void:
 
 
 func _game_over() -> void:
-	print("Game over!")
+	var stranger = STRANGER.instantiate()
+	if GameData.current_money <= 100000:
+		stranger.text_id = 1
+	elif GameData.current_money <= 100000 and GameData.current_money >= 500000:
+		stranger.text_id = 2
+	else:
+		stranger.text_id = 3
+	stranger.game_is_over = true
+	add_child(stranger)
 
 
 func _randomize_id_array() -> Array:
@@ -123,3 +129,13 @@ func _on_horf_is_winner(horf_id: int) -> void:
 		_game_over()
 		return
 	get_tree().reload_current_scene()
+
+
+func _on_restart_game() -> void:
+	GameData.current_money = 5000
+	GameData.current_day = 1
+	get_tree().reload_current_scene()
+
+
+func _on_restart_game_pressed() -> void:
+	Signals.restart_game.emit()

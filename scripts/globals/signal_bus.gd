@@ -7,6 +7,7 @@ signal update_money(delta: int)
 signal money_updated
 signal player_placed_bet(amount: int, horf_id: int)
 signal bets_placed
+signal restart_game
 
 func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS

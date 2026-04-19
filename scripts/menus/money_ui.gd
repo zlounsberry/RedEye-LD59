@@ -16,8 +16,8 @@ func _ready() -> void:
 func _change_number(delta: int) -> void:
 	get_tree().paused = true
 	var new_value = GameData.current_money + delta
+	_play_coin_sounds(new_value)
 	while GameData.current_money != new_value:
-		coin_sound.play()
 		var money_iteration: int
 		if abs(GameData.current_money - new_value) > 2000:
 			money_iteration = 2000
@@ -77,6 +77,25 @@ func _change_number(delta: int) -> void:
 	if is_inside_tree():
 		get_tree().paused = false
 	Signals.money_updated.emit()
+
+
+func _play_coin_sounds(new_value: int) -> void:
+	var play_sound_count: int
+	if abs(GameData.current_money - new_value) > 2000:
+		play_sound_count = 12
+	elif abs(GameData.current_money - new_value) > 500:
+		play_sound_count = 6
+	elif abs(GameData.current_money - new_value) > 100:
+		play_sound_count = 4
+	elif abs(GameData.current_money - new_value) > 50:
+		play_sound_count = 3
+	elif abs(GameData.current_money - new_value) > 10:
+		play_sound_count = 2
+	else:
+		play_sound_count = 1
+	for _coin_sound_count: int in play_sound_count:
+		coin_sound.play()
+		await get_tree().create_timer(0.08).timeout
 
 
 func _throw_coins(new_value: int) -> void:
