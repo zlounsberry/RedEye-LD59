@@ -84,6 +84,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Headers" unique_id=102442705]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Horf Name"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -92,6 +93,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Headers" unique_id=1458043902]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Odds"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -99,6 +101,7 @@ vertical_alignment = 1
 [node name="Photo" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Headers" unique_id=14791381]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Photo"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -106,6 +109,7 @@ vertical_alignment = 1
 [node name="Bet" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Headers" unique_id=614276914]
 custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Enter Bet"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -113,6 +117,7 @@ vertical_alignment = 1
 [node name="Lock" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Headers" unique_id=1173997273]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Press
 When
 Done"
@@ -126,6 +131,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf0" unique_id=1617847802]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -133,6 +139,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf0" unique_id=1524371816]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -162,6 +169,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf1" unique_id=2057688183]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -169,6 +177,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf1" unique_id=1642071547]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -198,6 +207,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf2" unique_id=1278919001]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -205,6 +215,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf2" unique_id=1076081015]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -234,6 +245,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf3" unique_id=1999824941]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -241,6 +253,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf3" unique_id=371992038]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -270,6 +283,7 @@ theme_override_constants/separation = 16
 [node name="Name" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf4" unique_id=1557567369]
 custom_minimum_size = Vector2(368, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
@@ -277,6 +291,7 @@ clip_text = true
 [node name="Odds" type="Label" parent="PlaceBetsMenuPanel/VBoxContainer/Horf4" unique_id=863759794]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 

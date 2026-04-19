@@ -199,6 +199,7 @@ metadata/_edit_use_anchors_ = true
 [node name="FireSound" type="AudioStreamPlayer" parent="." unique_id=1503514663]
 stream = ExtResource("4_22x2u")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1492678899]
 wait_time = 5.0

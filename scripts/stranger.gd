@@ -40,6 +40,7 @@ const TEXT_DICT: Dictionary = {
 
 func _ready() -> void:
 	get_tree().paused = true
+	Music.transition_music("MusicMain", "MusicStranger")
 	if game_is_over:
 		$RestartGame.show()
 	entry_anim.play("enter")
@@ -83,9 +84,11 @@ func _leave() -> void:
 		if text_id == 1:
 			prints("game over! you lose!", get_tree().paused)
 			Signals.final_show_game_over_screen.emit(false)
+			return
 		else:
 			print("game over! you win!!", get_tree().paused)
 			Signals.final_show_game_over_screen.emit(true)
+	Music.transition_music("MusicStranger", "MusicMain")
 	self.queue_free()
 
 

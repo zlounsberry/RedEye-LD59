@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://c7y7ekkichltb"]
 
 [ext_resource type="Script" uid="uid://c80o6wj6fl011" path="res://scripts/menus/title_screen.gd" id="1_n17qi"]
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_yx444"]
+[ext_resource type="FontFile" uid="uid://73vbxn2iturb" path="res://resources/fonts/Lady Radical.ttf" id="3_qc2aw"]
+[ext_resource type="Texture2D" uid="uid://e7rq56nb1hpt" path="res://resources/sprites/background.png" id="3_vudbd"]
+[ext_resource type="Texture2D" uid="uid://vndtypqp2lm5" path="res://resources/sprites/NO_CLANKERS.png" id="5_vudbd"]
+[ext_resource type="AudioStream" uid="uid://b2e354b113yl1" path="res://resources/sounds/pickupCoin.wav" id="6_ptv5j"]
 
 [node name="TitleScreen" type="Control" unique_id=1599197842]
 layout_mode = 3
@@ -9,26 +14,83 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_yx444")
 script = ExtResource("1_n17qi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=269978958]
+[node name="BG" type="Sprite2D" parent="." unique_id=624692952]
+position = Vector2(561, 804)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_vudbd")
+
+[node name="StartGame" type="Button" parent="." unique_id=2107868556]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = -34.0
-offset_right = 158.5
-offset_bottom = 34.0
+offset_left = -230.0
+offset_top = -67.0
+offset_right = 230.0
+offset_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Start Game"
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=1519790556]
-layout_mode = 2
-text = "Start"
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2044635683]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 13.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_qc2aw")
+bbcode_enabled = true
+text = "[center][wave] H O L    D       Y O U R      H O R F E S"
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1816040046]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1448949265]
+position = Vector2(45, 950)
+texture = ExtResource("5_vudbd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2136156118]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -100.0
+offset_right = -34.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="SFX" type="CheckBox" parent="VBoxContainer" unique_id=157641429]
 layout_mode = 2
-text = "Options"
+text = "Mute SFX"
+
+[node name="Music" type="CheckBox" parent="VBoxContainer" unique_id=1942114781]
+layout_mode = 2
+text = "Mute Music"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1821721906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=905596218]
+stream = ExtResource("6_ptv5j")
+bus = &"SFX"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="toggled" from="VBoxContainer/SFX" to="." method="_on_sfx_toggled"]
+[connection signal="toggled" from="VBoxContainer/Music" to="." method="_on_music_toggled"]

@@ -266,17 +266,17 @@ func _on_mouse_hitbox_mouse_exited() -> void:
 
 
 func _on_lose_button_pressed() -> void:
-	if cost_to_bribe > GameData.current_money:
+	if (cost_to_bribe * GameData.current_day) > GameData.current_money:
 		return
 	_bribe_jockey(true)
-	Signals.update_money.emit(-cost_to_bribe)
+	Signals.update_money.emit(-cost_to_bribe * GameData.current_day)
 
 
 func _on_win_button_pressed() -> void:
-	if cost_to_bribe > GameData.current_money:
+	if (cost_to_bribe * GameData.current_day) > GameData.current_money:
 		return
 	_bribe_jockey(false)
-	Signals.update_money.emit(-cost_to_bribe)
+	Signals.update_money.emit(-cost_to_bribe * GameData.current_day)
 
 
 func _on_eat_timeout() -> void:

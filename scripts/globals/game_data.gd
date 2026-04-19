@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_DAYS: int = 2
+const MAX_DAYS: int = 5
 
 const HORF_DICT: Dictionary = {
 	0: {
@@ -129,6 +129,8 @@ const HORF_LAST_NAME_ARRAY: Array = [
 @onready var main_volume: float = 0.8
 @onready var sfx_volume: float = 0.8
 @onready var music_volume: float = 0.8
+@onready var muted_music: bool = false
+@onready var muted_sfx: bool = false
 
 
 func _ready() -> void:
