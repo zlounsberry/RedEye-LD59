@@ -34,11 +34,11 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	
 	#DEBUG
 	if event.is_action("ui_text_delete"):
 		if OS.has_feature("editor"):
 			Engine.time_scale *= 4
+
 
 func _connect_signals() -> void:
 	Signals.horf_is_winner.connect(_on_horf_is_winner)
@@ -47,8 +47,12 @@ func _connect_signals() -> void:
 
 func _assign_horf_ids(random_horf_id_array: Array) -> void:
 	var array_position_count: int = 0
+	var horf_color_array: Array = [0,1,2,3,4,5,6]
+	horf_color_array.shuffle()
 	for horf_child in get_tree().get_nodes_in_group("horf"):
 		horf_child.horf_id = random_horf_id_array[array_position_count]
+		horf_child.horf_color = horf_color_array[array_position_count]
+		horf_child.assign_colors()
 		horf_child.assign_values_based_on_id()
 		horf_bet_dict[random_horf_id_array[array_position_count]] = 0
 		array_position_count += 1
@@ -79,28 +83,28 @@ func _populate_betting_menu() -> void:
 	place_bets_menu.horf_id_0 = horf_0.horf_id
 	place_bets_menu.horf_name_first_0  = horf_0.horf_name_first
 	place_bets_menu.horf_name_last_0 = horf_0.horf_name_last
-	place_bets_menu.horf_photo_path_0 = horf_0.horf_sprite_string
+	place_bets_menu.horf_photo_0 = horf_0.color_array[1]
 	place_bets_menu.odds_to_one_1 = horf_1.odds_to_one
 	place_bets_menu.horf_id_1 = horf_1.horf_id
 	place_bets_menu.horf_name_first_1  = horf_1.horf_name_first
 	place_bets_menu.horf_name_last_1 = horf_1.horf_name_last
-	place_bets_menu.horf_photo_path_1 = horf_1.horf_sprite_string
+	place_bets_menu.horf_photo_1 = horf_1.color_array[1]
 	place_bets_menu.odds_to_one_2 = horf_2.odds_to_one
 	place_bets_menu.horf_id_2 = horf_2.horf_id
 	place_bets_menu.horf_name_first_2  = horf_2.horf_name_first
 	place_bets_menu.horf_name_last_2 = horf_2.horf_name_last
-	place_bets_menu.horf_photo_path_2 = horf_2.horf_sprite_string
+	place_bets_menu.horf_photo_2 = horf_2.color_array[1]
 	place_bets_menu.odds_to_one_3 = horf_3.odds_to_one
 	place_bets_menu.horf_id_3 = horf_3.horf_id
 	place_bets_menu.horf_name_first_3  = horf_3.horf_name_first
 	place_bets_menu.horf_name_last_3 = horf_3.horf_name_last
-	place_bets_menu.horf_photo_path_3 = horf_3.horf_sprite_string
+	place_bets_menu.horf_photo_3 = horf_3.color_array[1]
 	place_bets_menu.odds_to_one_4 = horf_4.odds_to_one
 	place_bets_menu.horf_id_4 = horf_4.horf_id
 	place_bets_menu.horf_name_first_4  = horf_4.horf_name_first
 	place_bets_menu.horf_name_last_4 = horf_4.horf_name_last
-	place_bets_menu.horf_photo_path_4 = horf_4.horf_sprite_string
-	place_bets_menu.populate_text()
+	place_bets_menu.horf_photo_4 = horf_4.color_array[1]
+	place_bets_menu.populate_text_and_photo()
 
 
 func _on_horf_is_winner(horf_id: int) -> void:

@@ -43,45 +43,45 @@ var odds_to_one_0: int
 var horf_id_0: int
 var horf_name_first_0: String
 var horf_name_last_0: String
-var horf_photo_path_0: String
+var horf_photo_0
 var odds_to_one_1: int
 var horf_id_1: int
 var horf_name_first_1: String
 var horf_name_last_1: String
-var horf_photo_path_1: String
+var horf_photo_1
 var odds_to_one_2: int
 var horf_id_2: int
 var horf_name_first_2: String
 var horf_name_last_2: String
-var horf_photo_path_2: String
+var horf_photo_2
 var odds_to_one_3: int
 var horf_id_3: int
 var horf_name_first_3: String
 var horf_name_last_3: String
-var horf_photo_path_3: String
+var horf_photo_3
 var odds_to_one_4: int
 var horf_id_4: int
 var horf_name_first_4: String
 var horf_name_last_4: String
-var horf_photo_path_4: String
+var horf_photo_4
 
 
-func populate_text() -> void:
+func populate_text_and_photo() -> void:
 	name_0.text = str(horf_name_first_0, " ", horf_name_last_0)
 	odds_0.text = str(odds_to_one_0, ":1")
-	sprite_0.texture = load(horf_photo_path_0)
+	sprite_0.texture = horf_photo_0
 	name_1.text = str(horf_name_first_1, " ", horf_name_last_1)
 	odds_1.text = str(odds_to_one_1, ":1")
-	sprite_1.texture = load(horf_photo_path_1)
+	sprite_1.texture = horf_photo_1
 	name_2.text = str(horf_name_first_2, " ", horf_name_last_2)
 	odds_2.text = str(odds_to_one_2, ":1")
-	sprite_2.texture = load(horf_photo_path_2)
+	sprite_2.texture = horf_photo_2
 	name_3.text = str(horf_name_first_3, " ", horf_name_last_3)
 	odds_3.text = str(odds_to_one_3, ":1")
-	sprite_3.texture = load(horf_photo_path_3)
+	sprite_3.texture = horf_photo_3
 	name_4.text = str(horf_name_first_4, " ", horf_name_last_4)
 	odds_4.text = str(odds_to_one_4, ":1")
-	sprite_4.texture = load(horf_photo_path_4)
+	sprite_4.texture = horf_photo_4
 
 
 func show_popup() -> void:

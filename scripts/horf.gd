@@ -1,10 +1,34 @@
 extends Node2D
 
+enum HORF_COLOR {
+	BLUE,
+	BROWN,
+	GREEN,
+	ORANGE,
+	RED,
+	WHITE,
+	YELLOW,
+}
+
 const MAX_BRIBES: int = 10
 const VELOCITY_UPDATES: int = 5
 const LOCK = preload("uid://b6r00itrrxmyd")
 const RELIEVED = preload("uid://byk6j7td726fv")
 const SCARED = preload("uid://cee0bckx7vjr2")
+const BLUE_SPRITE_FRAMES = preload("uid://8p07cgqdkewl")
+const BROWN_SPRITE_FRAMES = preload("uid://cj1rl3e8bl8g1")
+const GREEN_SPRITE_FRAMES = preload("uid://uvymbwtkn1mi")
+const ORANGE_SPRITE_FRAMES = preload("uid://dcccr08rjeeea")
+const RED_SPRITE_FRAMES = preload("uid://chdpjv5emxgy3")
+const WHITE_SPRITE_FRAMES = preload("uid://cm66amy3tav26")
+const YELLOW_SPRITE_FRAMES = preload("uid://ijschumkawr5")
+const HORF_BLUE_PHOTO = preload("uid://c2f6oifl4rhr0")
+const HORF_BROWN_PHOTO = preload("uid://cm7a67fxrvqf0")
+const HORF_GREEN_PHOTO = preload("uid://wg6qvvjqn5jc")
+const HORF_ORANGE_PHOTO = preload("uid://rkgtgu1sciwo")
+const HORF_RED_PHOTO = preload("uid://coy64onte2umy")
+const HORF_WHITE_PHOTO = preload("uid://bs3kln1l6c1ux")
+const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
 
 
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
@@ -39,6 +63,9 @@ var speed_modifier_delta_on_bribe: float = randf_range(0.0025, 0.005)
 var lock_in_delta_on_bribe: float = randf_range(0.035, 0.075)
 var cost_to_bribe: int = randi_range(250, 750)
 var name_is_unique: bool = false
+var horf_color: int
+var color_array: Array
+var horf_photo: Resource
 
 
 func _ready() -> void:
@@ -68,6 +95,26 @@ func assign_values_based_on_id() -> void:
 	_populate_stats_popup()
 
 
+func assign_colors() -> void:
+	match horf_color:
+		HORF_COLOR.BLUE:
+			color_array = [BLUE_SPRITE_FRAMES, HORF_BLUE_PHOTO]
+		HORF_COLOR.BROWN:
+			color_array = [BROWN_SPRITE_FRAMES, HORF_BROWN_PHOTO]
+		HORF_COLOR.GREEN:
+			color_array = [GREEN_SPRITE_FRAMES, HORF_GREEN_PHOTO]
+		HORF_COLOR.ORANGE:
+			color_array = [ORANGE_SPRITE_FRAMES, HORF_ORANGE_PHOTO]
+		HORF_COLOR.RED:
+			color_array = [RED_SPRITE_FRAMES, HORF_RED_PHOTO]
+		HORF_COLOR.WHITE:
+			color_array = [WHITE_SPRITE_FRAMES, HORF_WHITE_PHOTO]
+		HORF_COLOR.YELLOW:
+			color_array = [YELLOW_SPRITE_FRAMES, HORF_YELLOW_PHOTO]
+	horf_sprite.sprite_frames = color_array[0]
+	horf_photo = color_array[0]
+
+
 func _assign_name() -> void:
 	var first_name_array: Array = GameData.HORF_FIRST_NAME_ARRAY.duplicate()
 	var last_name_array: Array = GameData.HORF_LAST_NAME_ARRAY.duplicate()
@@ -87,6 +134,7 @@ func _connect_signals() -> void:
 	Signals.misfire_gun.connect(_on_misfire_gun)
 	Signals.start_race.connect(_race_start)
 	Signals.horf_is_winner.connect(_race_over)
+	Signals.bets_placed.connect(_on_bets_placed)
 
 
 func _update_current_speed() -> void:
@@ -236,3 +284,8 @@ func _on_eat_timeout() -> void:
 	emote_anim.play_backwards("show")
 	if not racing:
 		eat_timer.start()
+
+
+func _on_bets_placed() -> void:
+	horf_sprite.play("idle")
+	eat_timer.start()
