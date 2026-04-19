@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bp4fk6irhuscu"
-path="res://.godot/imported/horf.glb-5a5c004e524029cbb83eba376fd0a115.scn"
+uid="uid://cnnoc3xr0hruj"
+path="res://.godot/imported/gun.glb-54827549dfd2b2ad5feb1140eaa7dc40.scn"
 
 [deps]
 
-source_file="res://resources/meshes/horf.glb"
-dest_files=["res://.godot/imported/horf.glb-5a5c004e524029cbb83eba376fd0a115.scn"]
+source_file="res://resources/meshes/gun.glb"
+dest_files=["res://.godot/imported/gun.glb-54827549dfd2b2ad5feb1140eaa7dc40.scn"]
 
 [params]
 

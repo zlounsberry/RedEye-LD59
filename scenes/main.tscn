@@ -64,10 +64,10 @@ layout_mode = 2
 [node name="Horf" parent="VBoxContainer/MarginContainer5" unique_id=2019939930 instance=ExtResource("2_0wfyh")]
 
 [node name="GunContainer" parent="." unique_id=1881853301 instance=ExtResource("3_sugp2")]
-position = Vector2(80, 448)
+position = Vector2(188, 966)
 
 [node name="MoneyUi" parent="." unique_id=1327274327 instance=ExtResource("4_jyhfs")]
-position = Vector2(56, 32)
+position = Vector2(132, 170)
 
 [node name="DayTitle" type="RichTextLabel" parent="." unique_id=717336186]
 layout_mode = 1

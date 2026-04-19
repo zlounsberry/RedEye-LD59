@@ -20,14 +20,20 @@ func _start_race() -> void:
 	fire.disabled = true
 	fire.text = '\"Misfire\"'
 	cooldown.start()
-	Signals.start_race.emit()
 	gun.play("fire")
+	await get_tree().create_timer(0.2).timeout
+	Signals.start_race.emit()
+	$MuzzleFlash.emitting = true
+	$Smoke.emitting = true
 	fire_sound.play()
 
 
 func _misfire_gun() -> void:
 	Signals.misfire_gun.emit()
 	gun.play("fire")
+	await get_tree().create_timer(0.2).timeout
+	$MuzzleFlash.emitting = true
+	$Smoke.emitting = true
 	fire_sound.play()
 	fire.disabled = true
 	fire.text = 'No Ammo'
