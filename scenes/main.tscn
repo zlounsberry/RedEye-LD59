@@ -93,7 +93,6 @@ text = "[center]DAY 12"
 fit_content = true
 
 [node name="PlaceBetsMenu" parent="." unique_id=150412088 instance=ExtResource("5_tbgi4")]
-visible = false
 layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=194223788]

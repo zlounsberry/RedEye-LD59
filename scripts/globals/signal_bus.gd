@@ -8,6 +8,7 @@ signal money_updated
 signal player_placed_bet(amount: int, horf_id: int)
 signal bets_placed
 signal restart_game
+signal player_wants_to_reload_scene
 
 func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS

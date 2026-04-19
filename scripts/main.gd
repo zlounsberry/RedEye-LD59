@@ -2,6 +2,7 @@ extends Control
 
 const HORF_ID_ARRAY: Array = [0,1,2,3,4,5,6,7]
 const STRANGER = preload("uid://cjxlxx057f5gc")
+const TEXT_POPUP = preload("uid://cbbq1byrh2y0x")
 
 
 @onready var day_title: RichTextLabel = $DayTitle
@@ -41,6 +42,7 @@ func _connect_signals() -> void:
 	Signals.horf_is_winner.connect(_on_horf_is_winner)
 	Signals.player_placed_bet.connect(_on_player_placed_bet)
 	Signals.restart_game.connect(_on_restart_game)
+	Signals.player_wants_to_reload_scene.connect(_on_player_wants_to_reload_scene)
 
 
 func _assign_horf_ids(random_horf_id_array: Array) -> void:
@@ -118,9 +120,11 @@ func _on_horf_is_winner(horf_id: int) -> void:
 	if horf_bet_dict.has(horf_id):
 		winning_bet = horf_bet_dict[horf_id]
 	var odds_multiplier: int
+	var horf_name: String
 	for horf_child in get_tree().get_nodes_in_group("horf"):
 		if horf_id == horf_child.horf_id:
 			odds_multiplier = horf_child.odds_to_one
+			horf_name = str(horf_child.horf_name_first, " ", horf_child.horf_name_last)
 	var total_winnings = odds_multiplier * winning_bet
 	Signals.update_money.emit(total_winnings)
 	await Signals.money_updated
@@ -128,6 +132,12 @@ func _on_horf_is_winner(horf_id: int) -> void:
 	if GameData.current_day > GameData.MAX_DAYS:
 		_game_over()
 		return
+	var text_popup = TEXT_POPUP.instantiate()
+	add_child(text_popup)
+	text_popup.show_round_over_horf_result(horf_name, total_winnings)
+
+
+func _on_player_wants_to_reload_scene() -> void:
 	get_tree().reload_current_scene()
 
 
