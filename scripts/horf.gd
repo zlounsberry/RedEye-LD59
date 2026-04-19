@@ -37,6 +37,9 @@ const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
 @onready var eat_timer: Timer = $Eat
 @onready var horf_sprite: AnimatedSprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
 @onready var emote_sprite: Sprite2D = $Path2D/PathFollow2D/Emote
+@onready var dirt: CPUParticles2D = $Path2D/PathFollow2D/Dirt
+@onready var dirt_2: CPUParticles2D = $Path2D/PathFollow2D/Dirt2
+
 
 @onready var emote_anim: AnimationPlayer = $EmoteAnim
 @onready var stats_popup: Panel = $StatsPopup
@@ -138,7 +141,7 @@ func _connect_signals() -> void:
 
 
 func _update_current_speed() -> void:
-	var new_speed: float = randf_range(speed_low, speed_high) * speed_modifier
+	var new_speed: float = randf_range(speed_low, speed_high) * speed_modifier * 2
 	speed = new_speed
 
 
@@ -178,6 +181,8 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 func _race_start() -> void:
 	racing = true
 	horf_sprite.play("run")
+	dirt.emitting = true
+	dirt_2.emitting = true
 	lose_button.disabled = true
 	win_button.disabled = true
 	$VBoxContainer/Label.text = "GLHF"
@@ -200,6 +205,8 @@ func _on_misfire_gun() -> void:
 	change_speed_timer.stop()
 	speed = 0
 	horf_sprite.play("idle")
+	dirt.emitting = false
+	dirt_2.emitting = false
 	emote_sprite.texture = SCARED
 	emote_anim.play("show")
 	await emote_anim.animation_finished
@@ -207,6 +214,8 @@ func _on_misfire_gun() -> void:
 	await get_tree().create_timer(4.0).timeout
 	emote_anim.play_backwards("show")
 	horf_sprite.play("run")
+	dirt.emitting = true
+	dirt_2.emitting = true
 	_update_current_speed()
 	change_speed_timer.start()
 	lock_in_timer.start()
@@ -281,6 +290,8 @@ func _on_eat_timeout() -> void:
 	await horf_sprite.animation_finished
 	eating = false
 	horf_sprite.play("idle")
+	dirt.emitting = false
+	dirt_2.emitting = false
 	emote_anim.play_backwards("show")
 	if not racing:
 		eat_timer.start()

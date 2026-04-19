@@ -174,7 +174,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 script = ExtResource("1_it1du")
 
 [node name="Gun" type="AnimatedSprite2D" parent="." unique_id=860526470]
-position = Vector2(0, -106)
+position = Vector2(-21.000004, -145)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_h8mtm")
 animation = &"fire"
 frame = 21
@@ -199,7 +200,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="MuzzleFlash" type="CPUParticles2D" parent="." unique_id=637997494]
-position = Vector2(-52, -267)
+position = Vector2(-100, -349)
 emitting = false
 amount = 2
 texture = ExtResource("3_2b44r")
@@ -210,7 +211,7 @@ gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_sw40t")
 
 [node name="Smoke" type="CPUParticles2D" parent="." unique_id=1313086221]
-position = Vector2(-53, -241)
+position = Vector2(-101, -338)
 emitting = false
 amount = 24
 texture = ExtResource("3_at0md")
