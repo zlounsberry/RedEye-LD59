@@ -29,6 +29,8 @@ const HORF_ORANGE_PHOTO = preload("uid://rkgtgu1sciwo")
 const HORF_RED_PHOTO = preload("uid://coy64onte2umy")
 const HORF_WHITE_PHOTO = preload("uid://bs3kln1l6c1ux")
 const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
+const TEXT_POPUP_SMALL = preload("uid://urf0ekfhj1p")
+
 
 
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
@@ -175,6 +177,10 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 	speed_low *= speed_modifier
 	speed_high *= speed_modifier
 	bribe_counter += 1
+	var text_popup = TEXT_POPUP_SMALL.instantiate()
+	text_popup.is_bribed_to_be_worse = is_bribed_to_be_worse
+	add_child(text_popup)
+	text_popup.position.x += 32
 	_populate_stats_popup()
 
 

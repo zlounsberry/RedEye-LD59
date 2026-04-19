@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="1_fallq"]
 [ext_resource type="Script" uid="uid://bn6xihfjwnwe" path="res://scripts/stranger.gd" id="1_kdpdp"]
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_w1sbw"]
 [ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="3_w1sbw"]
 [ext_resource type="Texture2D" uid="uid://c7ic4ww6b0kp7" path="res://resources/sprites/stranger.png" id="4_m0c2h"]
 
@@ -95,14 +96,25 @@ _data = {
 &"enter": SubResource("Animation_1m1x2")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpdp"]
-bg_color = Color(0.13605595, 0.13605595, 0.13605595, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1sbw"]
+bg_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.3882353, 0.7764706, 0.3019608, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Stranger" type="Control" unique_id=368258073]
 process_mode = 3
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_w1sbw")
 script = ExtResource("1_kdpdp")
 
 [node name="Blur" type="Sprite2D" parent="." unique_id=1959138848]
@@ -125,7 +137,7 @@ offset_left = 183.0
 offset_top = 350.0
 offset_right = 630.0
 offset_bottom = 516.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kdpdp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_w1sbw")
 
 [node name="Label" type="Label" parent="Panel" unique_id=2134657505]
 modulate = Color(1, 1, 1, 0)

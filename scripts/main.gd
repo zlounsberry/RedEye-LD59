@@ -5,7 +5,7 @@ const STRANGER = preload("uid://cjxlxx057f5gc")
 
 
 @onready var day_title: RichTextLabel = $DayTitle
-@onready var place_bets_menu: Panel = $PlaceBetsMenu
+@onready var place_bets_menu: Control = $PlaceBetsMenu
 @onready var horf_0: Node2D = $VBoxContainer/MarginContainer/Horf
 @onready var horf_1: Node2D = $VBoxContainer/MarginContainer2/Horf
 @onready var horf_2: Node2D = $VBoxContainer/MarginContainer3/Horf

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cbbq1byrh2y0x"]
 
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_61ibx"]
 [ext_resource type="Script" uid="uid://d3t01bb7dcv5" path="res://scripts/text_popup.gd" id="1_kg7ay"]
 [ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="2_61ibx"]
 
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_61ibx")
 script = ExtResource("1_kg7ay")
 
 [node name="Blur" type="ColorRect" parent="." unique_id=1347000855]

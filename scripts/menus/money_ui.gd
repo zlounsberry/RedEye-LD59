@@ -3,6 +3,9 @@ extends Node2D
 @onready var money_count: Label = $MoneyCount
 @onready var bag_sprite: AnimatedSprite2D = $MarginContainer/BagSprite
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var coins: CPUParticles2D = $Coins
+@onready var coin_sound: AudioStreamPlayer = $CoinSound
+
 
 
 func _ready() -> void:
@@ -14,6 +17,7 @@ func _change_number(delta: int) -> void:
 	get_tree().paused = true
 	var new_value = GameData.current_money + delta
 	while GameData.current_money != new_value:
+		coin_sound.play()
 		var money_iteration: int
 		if abs(GameData.current_money - new_value) > 2000:
 			money_iteration = 2000
@@ -27,6 +31,8 @@ func _change_number(delta: int) -> void:
 			money_iteration = 10
 		else:
 			money_iteration = 1
+		if not coins.emitting:
+			_throw_coins(new_value)
 		if delta > 0:
 			GameData.current_money += money_iteration
 		else:
@@ -67,6 +73,24 @@ func _change_number(delta: int) -> void:
 	tween.tween_property(bag_sprite, "scale", Vector2(tween_size,tween_size), 0.5)
 	tween.tween_property(bag_sprite, "position:y", tween_position_y, 0.5)
 	await get_tree().process_frame
+	coins.emitting = false
 	if is_inside_tree():
 		get_tree().paused = false
 	Signals.money_updated.emit()
+
+
+func _throw_coins(new_value: int) -> void:
+	if abs(GameData.current_money - new_value) > 2000:
+		coins.amount = 64
+	elif abs(GameData.current_money - new_value) > 500:
+		coins.amount = 32
+	elif abs(GameData.current_money - new_value) > 100:
+		coins.amount = 16
+	elif abs(GameData.current_money - new_value) > 50:
+		coins.amount = 8
+	elif abs(GameData.current_money - new_value) > 10:
+		coins.amount = 4
+	else:
+		coins.amount = 1
+	if not coins.emitting:
+		coins.emitting = true

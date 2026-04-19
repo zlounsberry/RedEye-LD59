@@ -33,8 +33,8 @@ func populate_text() -> void:
 	speed_label.text = str("Speed: ", str(speed_low).left(4), " - ", str(speed_high).left(4))
 	focus_label.text = str("Focus: ", str(lock_in_likelihood).left(4))
 	bribe_cost_label.text = str("Cost to Bribe: $", str(cost_to_bribe).left(4))
-	bribe_amount_speed.text = str("Bribe Speed Increase: ", str(modifier_delta_on_bribe).left(4))
-	bribe_amount_focus.text = str("Bribe Focus Increase: ", str(lock_in_delta_on_bribe).left(4))
+	bribe_amount_speed.text = str("Bribe Speed Increase Factor: ", str(modifier_delta_on_bribe * 100).left(4))
+	bribe_amount_focus.text = str("Bribe Focus Increase Factor: ", str(lock_in_delta_on_bribe * 10).left(4))
 	if horf_sprite_string == "":
 		return
 	horf_sprite.texture = load(horf_sprite_string)

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cisoroq8tcqcx" path="res://resources/sprites/gun_export_shoot.png" id="2_it1du"]
 [ext_resource type="Texture2D" uid="uid://blqun8vw3u3an" path="res://resources/sprites/muzzle_flash.png" id="3_2b44r"]
 [ext_resource type="Texture2D" uid="uid://i5mpq1gnt64c" path="res://resources/sprites/smoke_particles.png" id="3_at0md"]
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="3_sw40t"]
+[ext_resource type="AudioStream" uid="uid://48c87865wsou" path="res://resources/sounds/explosion.wav" id="4_22x2u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_at0md"]
 atlas = ExtResource("2_it1du")
@@ -187,6 +189,7 @@ offset_left = -48.0
 offset_top = 32.0
 offset_right = 48.0
 offset_bottom = 64.0
+theme = ExtResource("3_sw40t")
 disabled = true
 action_mode = 0
 button_mask = 7
@@ -194,6 +197,8 @@ text = "Fire!"
 metadata/_edit_use_anchors_ = true
 
 [node name="FireSound" type="AudioStreamPlayer" parent="." unique_id=1503514663]
+stream = ExtResource("4_22x2u")
+volume_db = -10.0
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1492678899]
 wait_time = 5.0

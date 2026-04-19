@@ -15,10 +15,15 @@ run/main_scene="uid://bsp00jucjsi55"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://b8bay5vkjji1v"
+
 [autoload]
 
 Signals="*uid://cr0ivublabtl3"
 GameData="*uid://bx0ixac7xlukr"
+Music="*uid://uvhw6xa6yehp"
 
 [display]
 
@@ -46,3 +51,4 @@ horf=""
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.09803922, 0.23921569, 0.24705882, 1)

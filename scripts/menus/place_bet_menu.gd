@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 const MAX_BUTTON_COUNT: = 5
 const HORF_BLUE_PHOTO = preload("uid://c2f6oifl4rhr0")
@@ -11,31 +11,31 @@ const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
 
 
 #Just copypasta from stats_popup, not DRY but it's a jam shut up
-@onready var name_0: Label = $VBoxContainer/Horf0/Name
-@onready var odds_0: Label = $VBoxContainer/Horf0/Odds
-@onready var sprite_0: Sprite2D = $VBoxContainer/Horf0/MarginContainer/Sprite2D
-@onready var line_edit_0: LineEdit = $VBoxContainer/Horf0/LineEdit
-@onready var lock_in_0: Button = $VBoxContainer/Horf0/LockIn
-@onready var name_1: Label = $VBoxContainer/Horf1/Name
-@onready var odds_1: Label = $VBoxContainer/Horf1/Odds
-@onready var sprite_1: Sprite2D = $VBoxContainer/Horf1/MarginContainer/Sprite2D
-@onready var line_edit_1: LineEdit = $VBoxContainer/Horf1/LineEdit
-@onready var lock_in_1: Button = $VBoxContainer/Horf1/LockIn
-@onready var name_2: Label = $VBoxContainer/Horf2/Name
-@onready var odds_2: Label = $VBoxContainer/Horf2/Odds
-@onready var sprite_2: Sprite2D = $VBoxContainer/Horf2/MarginContainer/Sprite2D
-@onready var line_edit_2: LineEdit = $VBoxContainer/Horf2/LineEdit
-@onready var lock_in_2: Button = $VBoxContainer/Horf2/LockIn
-@onready var name_3: Label = $VBoxContainer/Horf3/Name
-@onready var odds_3: Label = $VBoxContainer/Horf3/Odds
-@onready var sprite_3: Sprite2D = $VBoxContainer/Horf3/MarginContainer/Sprite2D
-@onready var line_edit_3: LineEdit = $VBoxContainer/Horf3/LineEdit
-@onready var lock_in_3: Button = $VBoxContainer/Horf3/LockIn
-@onready var name_4: Label = $VBoxContainer/Horf4/Name
-@onready var odds_4: Label = $VBoxContainer/Horf4/Odds
-@onready var sprite_4: Sprite2D = $VBoxContainer/Horf4/MarginContainer/Sprite2D
-@onready var line_edit_4: LineEdit = $VBoxContainer/Horf4/LineEdit
-@onready var lock_in_4: Button = $VBoxContainer/Horf4/LockIn
+@onready var name_0: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf0/Name
+@onready var odds_0: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf0/Odds
+@onready var sprite_0: Sprite2D = $PlaceBetsMenuPanel/VBoxContainer/Horf0/MarginContainer/Sprite2D
+@onready var line_edit_0: LineEdit = $PlaceBetsMenuPanel/VBoxContainer/Horf0/LineEdit
+@onready var lock_in_0: Button = $PlaceBetsMenuPanel/VBoxContainer/Horf0/LockIn
+@onready var name_1: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf1/Name
+@onready var odds_1: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf1/Odds
+@onready var sprite_1: Sprite2D = $PlaceBetsMenuPanel/VBoxContainer/Horf1/MarginContainer/Sprite2D
+@onready var line_edit_1: LineEdit = $PlaceBetsMenuPanel/VBoxContainer/Horf1/LineEdit
+@onready var lock_in_1: Button = $PlaceBetsMenuPanel/VBoxContainer/Horf1/LockIn
+@onready var name_2: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf2/Name
+@onready var odds_2: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf2/Odds
+@onready var sprite_2: Sprite2D = $PlaceBetsMenuPanel/VBoxContainer/Horf2/MarginContainer/Sprite2D
+@onready var line_edit_2: LineEdit = $PlaceBetsMenuPanel/VBoxContainer/Horf2/LineEdit
+@onready var lock_in_2: Button = $PlaceBetsMenuPanel/VBoxContainer/Horf2/LockIn
+@onready var name_3: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf3/Name
+@onready var odds_3: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf3/Odds
+@onready var sprite_3: Sprite2D = $PlaceBetsMenuPanel/VBoxContainer/Horf3/MarginContainer/Sprite2D
+@onready var line_edit_3: LineEdit = $PlaceBetsMenuPanel/VBoxContainer/Horf3/LineEdit
+@onready var lock_in_3: Button = $PlaceBetsMenuPanel/VBoxContainer/Horf3/LockIn
+@onready var name_4: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf4/Name
+@onready var odds_4: Label = $PlaceBetsMenuPanel/VBoxContainer/Horf4/Odds
+@onready var sprite_4: Sprite2D = $PlaceBetsMenuPanel/VBoxContainer/Horf4/MarginContainer/Sprite2D
+@onready var line_edit_4: LineEdit = $PlaceBetsMenuPanel/VBoxContainer/Horf4/LineEdit
+@onready var lock_in_4: Button = $PlaceBetsMenuPanel/VBoxContainer/Horf4/LockIn
 
 @onready var button_press_count: int = 0
 

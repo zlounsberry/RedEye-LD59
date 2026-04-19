@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cx663l3c01x2b" path="res://resources/sprites/bag_spritesheets/bag_Bag_dir6.png" id="7_2kxsk"]
 [ext_resource type="Texture2D" uid="uid://c83p17qbcaitw" path="res://resources/sprites/bag_spritesheets/bag_Bag_dir7.png" id="8_dqdjh"]
 [ext_resource type="Texture2D" uid="uid://tb11ije6p28" path="res://resources/sprites/bag_spritesheets/bag_Bag_dir8.png" id="9_s0gny"]
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="10_qocve"]
+[ext_resource type="Texture2D" uid="uid://cgd6ooudx6agp" path="res://resources/sprites/coin.png" id="11_pchxf"]
+[ext_resource type="AudioStream" uid="uid://b2e354b113yl1" path="res://resources/sounds/pickupCoin.wav" id="12_nmykw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_le3fc"]
 atlas = ExtResource("2_0tjev")
@@ -791,16 +794,34 @@ position = Vector2(64, 62)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_mv58s")
 autoplay = "default"
-frame_progress = 0.5819287
+frame_progress = 0.63086516
 
 [node name="MoneyCount" type="Label" parent="." unique_id=346007995]
 offset_top = 128.0
 offset_right = 128.0
 offset_bottom = 173.0
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("10_qocve")
+theme_override_font_sizes/font_size = 48
 text = "$1000"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=608116772]
 libraries/ = SubResource("AnimationLibrary_bdpjw")
+
+[node name="Coins" type="CPUParticles2D" parent="." unique_id=1346148774]
+texture_filter = 1
+position = Vector2(64, 150)
+emitting = false
+texture = ExtResource("11_pchxf")
+emission_shape = 3
+emission_rect_extents = Vector2(64, 16)
+direction = Vector2(0, -1)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = 200.0
+angular_velocity_max = 500.0
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="." unique_id=39388645]
+stream = ExtResource("12_nmykw")
+pitch_scale = 0.95

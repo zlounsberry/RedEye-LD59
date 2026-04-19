@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://uvhw6xa6yehp"]
+
+[ext_resource type="AudioStream" uid="uid://dpyqo6be8knh1" path="res://resources/sounds/MusicTrack0.ogg" id="1_h8bha"]
+
+[node name="Music" type="Node" unique_id=1605082812]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1676799007]
+stream = ExtResource("1_h8bha")
+bus = &"MUSIC"
+parameters/looping = true
