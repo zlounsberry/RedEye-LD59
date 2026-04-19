@@ -91,6 +91,7 @@ _data = {
 
 [node name="MoneyUi" type="Node2D" unique_id=1327274327]
 process_mode = 3
+z_index = 2
 script = ExtResource("1_nnlsb")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1329728454]

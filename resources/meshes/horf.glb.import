@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bytmr4ecfv1j6"
-path="res://.godot/imported/horf.glb-822663b08aabbbd820bb5e20586439b1.scn"
+uid="uid://d31m21gotlsuw"
+path="res://.godot/imported/horf.glb-5a5c004e524029cbb83eba376fd0a115.scn"
 
 [deps]
 
-source_file="res://horf.glb"
-dest_files=["res://.godot/imported/horf.glb-822663b08aabbbd820bb5e20586439b1.scn"]
+source_file="res://resources/meshes/horf.glb"
+dest_files=["res://.godot/imported/horf.glb-5a5c004e524029cbb83eba376fd0a115.scn"]
 
 [params]
 

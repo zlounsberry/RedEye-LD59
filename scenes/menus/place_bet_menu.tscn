@@ -9,7 +9,7 @@ bg_color = Color(0.13605595, 0.13605595, 0.13605595, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ksle"]
 shader = ExtResource("2_sv6rg")
-shader_parameter/blur_amount = 1.0000000475
+shader_parameter/blur_amount = 2.000000095
 
 [node name="PlaceBetsMenu" type="Panel" unique_id=150412088]
 z_index = 1
@@ -28,7 +28,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
 script = ExtResource("1_8xxu2")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=364926993]
+[node name="Blur" type="ColorRect" parent="." unique_id=364926993]
 material = SubResource("ShaderMaterial_3ksle")
 layout_mode = 0
 offset_left = -854.0

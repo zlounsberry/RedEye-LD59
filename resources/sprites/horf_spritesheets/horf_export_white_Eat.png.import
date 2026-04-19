@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjnnkc0ybmnvf"
-path="res://.godot/imported/horf_export_Run_Full_white.png-b2effee310e1d209aa71d44eb23210c2.ctex"
+uid="uid://b35jrb8wl74t2"
+path="res://.godot/imported/horf_export_white_Eat.png-a6e21d85a192b84921cf9a8857ceaade.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Run_Full/horf_export_Run_Full_white.png"
-dest_files=["res://.godot/imported/horf_export_Run_Full_white.png-b2effee310e1d209aa71d44eb23210c2.ctex"]
+source_file="res://resources/sprites/horf_spritesheets/horf_export_white_Eat.png"
+dest_files=["res://.godot/imported/horf_export_white_Eat.png-a6e21d85a192b84921cf9a8857ceaade.ctex"]
 
 [params]
 

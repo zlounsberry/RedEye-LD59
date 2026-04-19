@@ -11,6 +11,7 @@ z_index = 1
 custom_minimum_size = Vector2(256, 288)
 offset_right = 512.0
 offset_bottom = 576.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
 script = ExtResource("1_hpipu")
 

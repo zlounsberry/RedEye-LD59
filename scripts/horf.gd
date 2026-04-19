@@ -3,14 +3,15 @@ extends Node2D
 const MAX_BRIBES: int = 10
 const VELOCITY_UPDATES: int = 5
 const LOCK = preload("uid://b6r00itrrxmyd")
-const CONFUSED = preload("uid://cif4ww0qkyk26")
+const RELIEVED = preload("uid://byk6j7td726fv")
 const SCARED = preload("uid://cee0bckx7vjr2")
-const Z = preload("uid://jg5gpvumrfgl")
+
 
 
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
 @onready var lock_in_timer: Timer = $LockIn
+@onready var eat_timer: Timer = $Eat
 @onready var horf_sprite: AnimatedSprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
 @onready var emote_sprite: Sprite2D = $Path2D/PathFollow2D/Emote
 
@@ -20,6 +21,8 @@ const Z = preload("uid://jg5gpvumrfgl")
 @onready var win_button: Button = $VBoxContainer/WinButton
 @onready var race_over: bool = false
 @onready var locked_in: bool = false
+@onready var eating: bool = false
+@onready var racing: bool = false
 @onready var bribe_counter: int = 0
 
 var speed_modifier: float = 1.0
@@ -126,6 +129,7 @@ func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
 
 
 func _race_start() -> void:
+	racing = true
 	horf_sprite.play("run")
 	lose_button.disabled = true
 	win_button.disabled = true
@@ -133,6 +137,9 @@ func _race_start() -> void:
 	lock_in_timer.start()
 	_update_current_speed()
 	change_speed_timer.start()
+	eat_timer.queue_free()
+	if eating:
+		_on_misfire_gun() # Just a proxy for the scare emoji thing
 
 
 func _race_over(_horf_id: int) -> void:
@@ -145,7 +152,7 @@ func _on_misfire_gun() -> void:
 	lock_in_timer.stop()
 	change_speed_timer.stop()
 	speed = 0
-	horf_sprite.stop()
+	horf_sprite.play("idle")
 	emote_sprite.texture = SCARED
 	emote_anim.play("show")
 	await emote_anim.animation_finished
@@ -167,6 +174,7 @@ func _on_change_speed_timeout() -> void:
 
 
 func _on_lock_in_timeout() -> void:
+	eating = false # Just to avoid the delay on the other timer...
 	if locked_in:
 		return
 	var random_float: float = randf()
@@ -207,3 +215,25 @@ func _on_win_button_pressed() -> void:
 		return
 	_bribe_jockey(false)
 	Signals.update_money.emit(-cost_to_bribe)
+
+
+func _on_eat_timeout() -> void:
+	if eating:
+		return
+	var random_float: float = randf()
+	if random_float >= lock_in_likelihood:
+		eating = false
+		return
+	eat_timer.stop()
+	eating = true
+	emote_sprite.texture = RELIEVED
+	horf_sprite.play("eat")
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
+	await horf_sprite.animation_finished
+	eating = false
+	horf_sprite.play("idle")
+	emote_anim.play_backwards("show")
+	if not racing:
+		eat_timer.start()

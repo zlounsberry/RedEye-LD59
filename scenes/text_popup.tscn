@@ -1,3 +1,43 @@
 [gd_scene format=3 uid="uid://cbbq1byrh2y0x"]
 
-[node name="TextPopup" type="Node2D" unique_id=1415964750]
+[ext_resource type="Script" uid="uid://d3t01bb7dcv5" path="res://scripts/text_popup.gd" id="1_kg7ay"]
+[ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="2_61ibx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5gfs"]
+shader = ExtResource("2_61ibx")
+shader_parameter/blur_amount = 2.000000095
+
+[node name="TextPopupFull" type="Control" unique_id=1929154236]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kg7ay")
+
+[node name="Blur" type="ColorRect" parent="." unique_id=1347000855]
+material = SubResource("ShaderMaterial_b5gfs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1566044615]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -688.0
+offset_top = -84.5
+offset_right = 688.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]okay cool"
+fit_content = true

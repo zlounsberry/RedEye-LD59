@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxyd5gexi11s2"
-path="res://.godot/imported/horf_export_blue_Run_Full.png-6f7cf577d7082c5760360ec65dd40267.ctex"
+uid="uid://dqmoy1c5csp7j"
+path="res://.godot/imported/horf_export_blue_Run_3.png-5cc1f618de882c5ead2cfea265bebbe4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Run_Full/horf_export_blue_Run_Full.png"
-dest_files=["res://.godot/imported/horf_export_blue_Run_Full.png-6f7cf577d7082c5760360ec65dd40267.ctex"]
+source_file="res://resources/sprites/horf_spritesheets/horf_export_blue_Run_3.png"
+dest_files=["res://.godot/imported/horf_export_blue_Run_3.png-5cc1f618de882c5ead2cfea265bebbe4.ctex"]
 
 [params]
 

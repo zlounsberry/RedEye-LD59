@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jg5gpvumrfgl"
-path="res://.godot/imported/z.png-4320a2a52300f497b6181afedb1ee57c.ctex"
+uid="uid://d3yeisfl8ex8i"
+path="res://.godot/imported/horf_export_orange_Run_3.png-2ad9d704359ff7c2f0c7acff602c5dc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/z.png"
-dest_files=["res://.godot/imported/z.png-4320a2a52300f497b6181afedb1ee57c.ctex"]
+source_file="res://resources/sprites/horf_spritesheets/horf_export_orange_Run_3.png"
+dest_files=["res://.godot/imported/horf_export_orange_Run_3.png-2ad9d704359ff7c2f0c7acff602c5dc2.ctex"]
 
 [params]
 

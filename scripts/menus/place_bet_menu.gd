@@ -1,6 +1,14 @@
 extends Panel
 
 const MAX_BUTTON_COUNT: = 5
+const HORF_BLUE_PHOTO = preload("uid://c2f6oifl4rhr0")
+const HORF_BROWN_PHOTO = preload("uid://cm7a67fxrvqf0")
+const HORF_GREEN_PHOTO = preload("uid://wg6qvvjqn5jc")
+const HORF_ORANGE_PHOTO = preload("uid://rkgtgu1sciwo")
+const HORF_RED_PHOTO = preload("uid://coy64onte2umy")
+const HORF_WHITE_PHOTO = preload("uid://bs3kln1l6c1ux")
+const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
+
 
 #Just copypasta from stats_popup, not DRY but it's a jam shut up
 @onready var name_0: Label = $VBoxContainer/Horf0/Name
