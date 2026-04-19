@@ -26,17 +26,15 @@ func _start_race() -> void:
 
 
 func _misfire_gun() -> void:
-	print("_misfire_gun")
 	Signals.misfire_gun.emit()
 	gun.play("fire")
 	fire_sound.play()
-	fire.disabled = false
+	fire.disabled = true
 	fire.text = 'No Ammo'
 
 
 func _on_fire_pressed() -> void:
 	if race_started:
-		print("misfiring _on_fire_pressed")
 		_misfire_gun()
 	else:
 		_start_race()

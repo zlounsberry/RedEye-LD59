@@ -23,15 +23,22 @@ func _ready() -> void:
 		var stranger = STRANGER.instantiate()
 		stranger.text_id = 1
 		add_child(stranger)
-	if GameData.current_day == 1:
-		var stranger = STRANGER.instantiate()
-		stranger.text_id = 0
-		add_child(stranger)
+	#if GameData.current_day == 1:
+		#var stranger = STRANGER.instantiate()
+		#stranger.text_id = 0
+		#add_child(stranger)
 	var random_horf_id_array = _randomize_id_array()
 	_assign_horf_ids(random_horf_id_array)
 	await get_tree().process_frame
 	_populate_betting_menu()
 
+
+func _input(event: InputEvent) -> void:
+	
+	#DEBUG
+	if event.is_action("ui_text_delete"):
+		if OS.has_feature("editor"):
+			Engine.time_scale *= 4
 
 func _connect_signals() -> void:
 	Signals.horf_is_winner.connect(_on_horf_is_winner)
@@ -60,7 +67,6 @@ func _randomize_id_array() -> Array:
 func _on_player_placed_bet(amount: int, horf_id: int) -> void:
 	Signals.update_money.emit(-amount)
 	if horf_bet_dict.has(horf_id):
-		prints(amount, "on horf", horf_id)
 		horf_bet_dict[horf_id] = amount
 	for horf_child in get_tree().get_nodes_in_group("horf"):
 		if horf_id == horf_child.horf_id:
@@ -106,7 +112,6 @@ func _on_horf_is_winner(horf_id: int) -> void:
 		if horf_id == horf_child.horf_id:
 			odds_multiplier = horf_child.odds_to_one
 	var total_winnings = odds_multiplier * winning_bet
-	prints(winning_bet, odds_multiplier, total_winnings)
 	Signals.update_money.emit(total_winnings)
 	await Signals.money_updated
 	GameData.current_day += 1

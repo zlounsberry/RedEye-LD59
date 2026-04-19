@@ -33,15 +33,12 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		print('click')
 		if can_advance:
-			print('click registered', can_advance)
 			can_advance = false
 			_populate_text()
 
 
 func _populate_text() -> void:
-	prints("_populate_text()", text_id)
 	var tween: Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(label, "modulate:a", 0, 0.15)
 	await tween.finished

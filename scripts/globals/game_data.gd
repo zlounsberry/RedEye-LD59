@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_DAYS: int = 2
+const MAX_DAYS: int = 5
 
 const HORF_DICT: Dictionary = {
 	0: {
@@ -12,44 +12,44 @@ const HORF_DICT: Dictionary = {
 	1: {
 		"odds_to_one": 2,
 		"low_speed": 14,
-		"high_speed": 27.5,
-		"lock_in_likelihood": 0.45,
+		"high_speed": 30,
+		"lock_in_likelihood": 0.4,
 	},
 	2: {
 		"odds_to_one": 4,
 		"low_speed": 13,
-		"high_speed": 22.5,
-		"lock_in_likelihood": 0.45,
+		"high_speed": 27.5,
+		"lock_in_likelihood": 0.4,
 	},
 	3: {
 		"odds_to_one": 8,
-		"low_speed": 10,
-		"high_speed": 20,
-		"lock_in_likelihood": 0.4,
+		"low_speed": 12,
+		"high_speed": 25,
+		"lock_in_likelihood": 0.35,
 	},
 	4: {
 		"odds_to_one": 16,
-		"low_speed": 7.5,
-		"high_speed": 20,
-		"lock_in_likelihood": 0.35,
+		"low_speed": 10,
+		"high_speed": 23,
+		"lock_in_likelihood": 0.3,
 	},
 	5: {
 		"odds_to_one": 24,
-		"low_speed": 5,
-		"high_speed": 17.5,
-		"lock_in_likelihood": 0.35,
+		"low_speed": 8,
+		"high_speed": 22,
+		"lock_in_likelihood": 0.2,
 	},
 	6: {
 		"odds_to_one": 32,
-		"low_speed": 4,
-		"high_speed": 17.5,
-		"lock_in_likelihood": 0.3,
+		"low_speed": 5,
+		"high_speed": 20,
+		"lock_in_likelihood": 0.2,
 	},
 	7: {
 		"odds_to_one": 64,
 		"low_speed": 4,
-		"high_speed": 12.5,
-		"lock_in_likelihood": 0.2,
+		"high_speed": 18,
+		"lock_in_likelihood": 0.1,
 	},
 }
 

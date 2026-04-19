@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://beljeb2r00375" path="res://scripts/menus/place_bet_menu.gd" id="1_8xxu2"]
 [ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_51shw"]
+[ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="2_sv6rg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41dsf"]
 bg_color = Color(0.13605595, 0.13605595, 0.13605595, 1)
 
-[node name="PlaceBetsMenu" type="Panel" unique_id=150412088 groups=["stats_popup"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ksle"]
+shader = ExtResource("2_sv6rg")
+shader_parameter/blur_amount = 1.0000000475
+
+[node name="PlaceBetsMenu" type="Panel" unique_id=150412088]
 z_index = 1
-custom_minimum_size = Vector2(576, 416)
+custom_minimum_size = Vector2(736, 512)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,6 +27,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
 script = ExtResource("1_8xxu2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=364926993]
+material = SubResource("ShaderMaterial_3ksle")
+layout_mode = 0
+offset_left = -854.0
+offset_top = -366.0
+offset_right = 1421.0
+offset_bottom = 865.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656779253]
 layout_mode = 1
@@ -260,8 +273,18 @@ expand_to_text_length = true
 layout_mode = 2
 text = "LOCK IN"
 
+[node name="Done" type="Button" parent="." unique_id=280232834]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 546.0
+offset_right = 464.0
+offset_bottom = 642.0
+theme_override_font_sizes/font_size = 24
+text = "Done Betting"
+
 [connection signal="pressed" from="VBoxContainer/Horf0/LockIn" to="." method="_on_lock_in_0_pressed"]
 [connection signal="pressed" from="VBoxContainer/Horf1/LockIn" to="." method="_on_lock_in_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Horf2/LockIn" to="." method="_on_lock_in_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Horf3/LockIn" to="." method="_on_lock_in_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Horf4/LockIn" to="." method="_on_lock_in_4_pressed"]
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]

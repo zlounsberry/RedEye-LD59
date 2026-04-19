@@ -162,3 +162,7 @@ func _on_lock_in_4_pressed() -> void:
 	button_press_count += 1
 	if button_press_count >= MAX_BUTTON_COUNT:
 		close_popup()
+
+
+func _on_done_pressed() -> void:
+	close_popup()

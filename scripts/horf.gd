@@ -1,5 +1,6 @@
 extends Node2D
 
+const MAX_BRIBES: int = 10
 const VELOCITY_UPDATES: int = 5
 const LOCK = preload("uid://b6r00itrrxmyd")
 const CONFUSED = preload("uid://cif4ww0qkyk26")
@@ -10,15 +11,16 @@ const Z = preload("uid://jg5gpvumrfgl")
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
 @onready var lock_in_timer: Timer = $LockIn
-@onready var horf_sprite: Sprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
+@onready var horf_sprite: AnimatedSprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
 @onready var emote_sprite: Sprite2D = $Path2D/PathFollow2D/Emote
-@onready var horf_anim: AnimationPlayer = $HorfAnim
+
 @onready var emote_anim: AnimationPlayer = $EmoteAnim
 @onready var stats_popup: Panel = $StatsPopup
 @onready var lose_button: Button = $VBoxContainer/LoseButton
 @onready var win_button: Button = $VBoxContainer/WinButton
 @onready var race_over: bool = false
 @onready var locked_in: bool = false
+@onready var bribe_counter: int = 0
 
 var speed_modifier: float = 1.0
 var speed: float
@@ -31,7 +33,7 @@ var horf_name_first: String
 var horf_name_last: String
 var horf_sprite_string: String
 
-var speed_modifier_delta_on_bribe: float = randf_range(0.005, 0.0075)
+var speed_modifier_delta_on_bribe: float = randf_range(0.0025, 0.005)
 var lock_in_delta_on_bribe: float = randf_range(0.035, 0.075)
 var cost_to_bribe: int = randi_range(250, 750)
 var name_is_unique: bool = false
@@ -45,10 +47,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if race_over:
 		return
-	$Path2D/PathFollow2D/Horf/Locked.text = str(locked_in)
 	path_follow_2d.progress += (speed * delta * speed_modifier)
 	if path_follow_2d.progress_ratio >= 1.0:
-		print("horf wins!")
 		Signals.horf_is_winner.emit(horf_id)
 
 
@@ -99,26 +99,37 @@ func _populate_stats_popup() -> void:
 	stats_popup.odds_to_one = odds_to_one
 	stats_popup.horf_name_first = horf_name_first
 	stats_popup.horf_name_last = horf_name_last
-	stats_popup.cost_to_bribe = cost_to_bribe
+	stats_popup.cost_to_bribe = cost_to_bribe * GameData.current_day
 	stats_popup.modifier_delta_on_bribe = speed_modifier_delta_on_bribe
 	stats_popup.lock_in_delta_on_bribe = lock_in_delta_on_bribe
 	stats_popup.populate_text()
 
 
 func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
+	if bribe_counter >= MAX_BRIBES:
+		$VBoxContainer/Label.text = "MAXED"
+		lose_button.disabled = true
+		win_button.disabled = true
+		return
 	if is_bribed_to_be_worse:
 		speed_modifier -= speed_modifier_delta_on_bribe
-		lock_in_likelihood -= lock_in_delta_on_bribe
+		if lock_in_likelihood > lock_in_delta_on_bribe:
+			lock_in_likelihood -= lock_in_delta_on_bribe
 	else:
 		speed_modifier += speed_modifier_delta_on_bribe
-		lock_in_likelihood += lock_in_delta_on_bribe
+		if lock_in_likelihood < (1 - lock_in_delta_on_bribe):
+			lock_in_likelihood += lock_in_delta_on_bribe
 	speed_low *= speed_modifier
 	speed_high *= speed_modifier
+	bribe_counter += 1
 	_populate_stats_popup()
 
 
 func _race_start() -> void:
-	horf_anim.play("run")
+	horf_sprite.play("run")
+	lose_button.disabled = true
+	win_button.disabled = true
+	$VBoxContainer/Label.text = "GLHF"
 	lock_in_timer.start()
 	_update_current_speed()
 	change_speed_timer.start()
@@ -134,13 +145,14 @@ func _on_misfire_gun() -> void:
 	lock_in_timer.stop()
 	change_speed_timer.stop()
 	speed = 0
+	horf_sprite.stop()
 	emote_sprite.texture = SCARED
 	emote_anim.play("show")
 	await emote_anim.animation_finished
 	emote_anim.play("idle")
-	await get_tree().create_timer(6.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	emote_anim.play_backwards("show")
-	horf_anim.play("run")
+	horf_sprite.play("run")
 	_update_current_speed()
 	change_speed_timer.start()
 	lock_in_timer.start()
