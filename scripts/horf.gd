@@ -7,7 +7,6 @@ const RELIEVED = preload("uid://byk6j7td726fv")
 const SCARED = preload("uid://cee0bckx7vjr2")
 
 
-
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var change_speed_timer: Timer = $ChangeSpeed
 @onready var lock_in_timer: Timer = $LockIn
