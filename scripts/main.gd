@@ -36,6 +36,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action("ui_text_delete"):
 		if OS.has_feature("editor"):
 			Engine.time_scale *= 4
+	if event.is_action("ui_home"):
+		if OS.has_feature("editor"):
+			Engine.time_scale = 1
 
 
 func _connect_signals() -> void:
@@ -43,6 +46,7 @@ func _connect_signals() -> void:
 	Signals.player_placed_bet.connect(_on_player_placed_bet)
 	Signals.restart_game.connect(_on_restart_game)
 	Signals.player_wants_to_reload_scene.connect(_on_player_wants_to_reload_scene)
+	Signals.final_show_game_over_screen.connect(_on_final_show_game_over_screen)
 
 
 func _assign_horf_ids(random_horf_id_array: Array) -> void:
@@ -62,12 +66,23 @@ func _game_over() -> void:
 	var stranger = STRANGER.instantiate()
 	if GameData.current_money <= 100000:
 		stranger.text_id = 1
-	elif GameData.current_money <= 100000 and GameData.current_money >= 500000:
+	elif GameData.current_money >= 100000 and GameData.current_money <= 500000:
 		stranger.text_id = 2
-	else:
+	elif GameData.current_money >= 500000 and GameData.current_money <= 1000000:
 		stranger.text_id = 3
+	else:
+		stranger.text_id = 4
 	stranger.game_is_over = true
 	add_child(stranger)
+
+
+func _on_final_show_game_over_screen(player_wins: bool) -> void:
+	var text_popup = TEXT_POPUP.instantiate()
+	add_child(text_popup)
+	if player_wins:
+		text_popup.show_game_over_win()
+	else:
+		text_popup.show_game_over_loss()
 
 
 func _randomize_id_array() -> Array:

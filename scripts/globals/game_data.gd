@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_DAYS: int = 5
+const MAX_DAYS: int = 2
 
 const HORF_DICT: Dictionary = {
 	0: {
@@ -65,6 +65,29 @@ const HORF_FIRST_NAME_ARRAY: Array = [
 	"Monstrous",
 	"Shotgun",
 	"Copyright",
+	"Robot",
+	"Angry",
+	"Punk-Rock",
+	"Absolutely Not A",
+	"Alcoholic",
+	"Left-Handed",
+	"Outside There Is",
+	"Four Legs Of",
+	"Big Dog",
+	"Professional",
+	"Meme-Named",
+	"Milkshake",
+	"Ludum",
+	"Smooth-brained",
+	"Artificial",
+	"Disaster",
+	"Unemployed",
+	"Sir",
+	"The Incomparable",
+	"Bobby",
+	"The Undrowned",
+	"Pillar Of",
+	"Clever",
 ]
 
 const HORF_LAST_NAME_ARRAY: Array = [
@@ -81,6 +104,22 @@ const HORF_LAST_NAME_ARRAY: Array = [
 	"Wedding",
 	"Sandwich",
 	"Infringement",
+	"Godot",
+	"Duck",
+	"Dog",
+	"Dare",
+	"Engineer",
+	"Clanker",
+	"Battery Eater",
+	"Snowball Tosser",
+	"Bisexual",
+	"Nothing",
+	"ERROR",
+	"Twitch Streamer",
+	"Salt",
+	"Necrobinder",
+	"Girl",
+	"Winner",
 ]
 
 

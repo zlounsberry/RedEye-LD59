@@ -29,12 +29,13 @@ const TEXT_DICT: Dictionary = {
 }
 
 @export var text_id: int
+@export var game_is_over: bool = false
 
 @onready var current_text_block: int = 0
 @onready var entry_anim: AnimationPlayer = $EntryAnim
 @onready var label: Label = $Panel/Label
 @onready var can_advance: bool = false
-@onready var game_is_over: bool = false
+
 
 
 func _ready() -> void:
@@ -71,11 +72,21 @@ func _populate_text() -> void:
 
 
 func _leave() -> void:
+	print("Stranger left")
 	entry_anim.play_backwards("enter")
 	await entry_anim.animation_finished
+	print("Stranger left anim finished")
 	if is_inside_tree():
 		get_tree().paused = false
-		self.queue_free()
+	if game_is_over:
+		# How's THIS for end-of-day jank?!
+		if text_id == 1:
+			prints("game over! you lose!", get_tree().paused)
+			Signals.final_show_game_over_screen.emit(false)
+		else:
+			print("game over! you win!!", get_tree().paused)
+			Signals.final_show_game_over_screen.emit(true)
+	self.queue_free()
 
 
 func _on_skip_pressed() -> void:

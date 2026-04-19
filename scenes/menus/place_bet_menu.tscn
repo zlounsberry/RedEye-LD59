@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://beljeb2r00375" path="res://scripts/menus/place_bet_menu.gd" id="1_8xxu2"]
 [ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_sv6rg"]
-[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_51shw"]
 [ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="2_sv6rg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3ksle"]
@@ -142,7 +141,6 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="PlaceBetsMenuPanel/VBoxContainer/Horf0/MarginContainer" unique_id=2126873990]
-texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="PlaceBetsMenuPanel/VBoxContainer/Horf0" unique_id=111033524]
@@ -179,7 +177,6 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="PlaceBetsMenuPanel/VBoxContainer/Horf1/MarginContainer" unique_id=1296004404]
-texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="PlaceBetsMenuPanel/VBoxContainer/Horf1" unique_id=278976468]
@@ -216,7 +213,6 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="PlaceBetsMenuPanel/VBoxContainer/Horf2/MarginContainer" unique_id=992205949]
-texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="PlaceBetsMenuPanel/VBoxContainer/Horf2" unique_id=71482903]
@@ -253,7 +249,6 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="PlaceBetsMenuPanel/VBoxContainer/Horf3/MarginContainer" unique_id=266941645]
-texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="PlaceBetsMenuPanel/VBoxContainer/Horf3" unique_id=319949958]
@@ -290,7 +285,6 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="PlaceBetsMenuPanel/VBoxContainer/Horf4/MarginContainer" unique_id=34968485]
-texture = ExtResource("2_51shw")
 centered = false
 
 [node name="LineEdit" type="LineEdit" parent="PlaceBetsMenuPanel/VBoxContainer/Horf4" unique_id=1841290269]
