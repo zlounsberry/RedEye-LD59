@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://cjxlxx057f5gc"]
+
+[ext_resource type="Shader" uid="uid://dans0r71nqdut" path="res://resources/godot_resources/blur.gdshader" id="1_fallq"]
+[ext_resource type="Script" uid="uid://bn6xihfjwnwe" path="res://scripts/stranger.gd" id="1_kdpdp"]
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_w1sbw"]
+[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="3_w1sbw"]
+[ext_resource type="Texture2D" uid="uid://c7ic4ww6b0kp7" path="res://resources/sprites/stranger.png" id="4_m0c2h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qd7sj"]
+shader = ExtResource("1_fallq")
+shader_parameter/blur_amount = 1.0000000475
+
+[sub_resource type="Animation" id="Animation_7fee1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stranger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1183, 276)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stranger:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1m1x2"]
+resource_name = "enter"
+length = 1.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stranger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39, 0.59999996, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2402, 540), Vector2(1386, 580), Vector2(1386, 580), Vector2(1440, 547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stranger:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.38999993, 0.59, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.2617993877991494, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dvx7"]
+_data = {
+&"RESET": SubResource("Animation_7fee1"),
+&"enter": SubResource("Animation_1m1x2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1sbw"]
+bg_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.3882353, 0.7764706, 0.3019608, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Stranger" type="Control" unique_id=368258073]
+process_mode = 3
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_w1sbw")
+script = ExtResource("1_kdpdp")
+
+[node name="Blur" type="Sprite2D" parent="." unique_id=1959138848]
+material = SubResource("ShaderMaterial_qd7sj")
+position = Vector2(960, 540)
+scale = Vector2(20, 12.073)
+texture = ExtResource("3_w1sbw")
+
+[node name="Stranger" type="Sprite2D" parent="." unique_id=1553198031]
+position = Vector2(1183, 276)
+scale = Vector2(2, 2)
+texture = ExtResource("4_m0c2h")
+
+[node name="EntryAnim" type="AnimationPlayer" parent="." unique_id=500994981]
+libraries/ = SubResource("AnimationLibrary_3dvx7")
+
+[node name="Panel" type="Panel" parent="." unique_id=139046825]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 365.0
+offset_top = 701.0
+offset_right = 1385.0
+offset_bottom = 1049.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w1sbw")
+
+[node name="Label" type="Label" parent="Panel" unique_id=2134657505]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = -28.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "And in a real pinch, no one is going to notice if your starter pistol pops off an extra time during the race, right? Those things are finicky! Just make sure your horf is locked in when you do it, eh?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Skip" type="Button" parent="." unique_id=807826555]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 970.0
+offset_right = 255.0
+offset_bottom = 1035.0
+text = "Skip Tutorial
+"
+
+[node name="RestartGame" type="Button" parent="." unique_id=973088310]
+visible = false
+layout_mode = 0
+offset_left = 49.0
+offset_top = 867.0
+offset_right = 255.0
+offset_bottom = 932.0
+text = "Restart Game
+"
+
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="RestartGame" to="." method="_on_restart_game_pressed"]

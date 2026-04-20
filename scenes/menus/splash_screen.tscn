@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cavha7xoe4gck"]
+
+[ext_resource type="Script" uid="uid://bc4p85oxadqr7" path="res://scripts/menus/splash_screen.gd" id="1_f7yun"]
+
+[node name="SplashScreen" type="Node2D" unique_id=109584041]
+script = ExtResource("1_f7yun")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1530408724]

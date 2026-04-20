@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://uvhw6xa6yehp"]
+
+[ext_resource type="Script" uid="uid://gnxnf8vcwt6u" path="res://scripts/globals/music.gd" id="1_1p56d"]
+[ext_resource type="AudioStream" uid="uid://dpyqo6be8knh1" path="res://resources/sounds/MusicTrack0.ogg" id="1_h8bha"]
+[ext_resource type="AudioStream" uid="uid://dpwvsxykerc6p" path="res://resources/sounds/MusicTrack1.ogg" id="3_y2utx"]
+
+[node name="Music" type="Node" unique_id=1605082812]
+process_mode = 3
+script = ExtResource("1_1p56d")
+
+[node name="MusicMain" type="AudioStreamPlayer" parent="." unique_id=1676799007]
+stream = ExtResource("1_h8bha")
+autoplay = true
+bus = &"MUSIC"
+parameters/looping = true
+
+[node name="MusicStranger" type="AudioStreamPlayer" parent="." unique_id=224144131]
+stream = ExtResource("3_y2utx")
+bus = &"MUSIC"
+parameters/looping = true

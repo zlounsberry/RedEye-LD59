@@ -1,0 +1,94 @@
+[gd_resource type="Theme" format=3 uid="uid://b8rmaehx2pupe"]
+
+[ext_resource type="FontFile" uid="uid://dohyhfqlsx8g0" path="res://resources/fonts/Boomer Tantrum.otf" id="1_nd07b"]
+[ext_resource type="FontFile" uid="uid://bx1lvfioerx0w" path="res://resources/fonts/Hannover Messe Sans.otf" id="2_nd07b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svfd7"]
+bg_color = Color(0.6862745, 0.7490196, 0.8235294, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci444"]
+bg_color = Color(0.8980392, 0.23137255, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftd5q"]
+bg_color = Color(0.8980392, 0.23137255, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd07b"]
+bg_color = Color(1, 0.90588236, 0.38431373, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw8yi"]
+bg_color = Color(0.9843137, 0.57254905, 0.16862746, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg8qu"]
+bg_color = Color(0.45490196, 0.24705882, 0.22352941, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8mgx"]
+bg_color = Color(0.24705882, 0.15686275, 0.19607843, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[resource]
+Button/colors/font_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+Button/colors/font_disabled_color = Color(0.30980393, 0.40392157, 0.5058824, 1)
+Button/colors/font_pressed_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+Button/constants/line_spacing = 2
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_nd07b")
+Button/styles/disabled = SubResource("StyleBoxFlat_svfd7")
+Button/styles/focus = SubResource("StyleBoxFlat_ci444")
+Button/styles/hover = SubResource("StyleBoxFlat_ftd5q")
+Button/styles/normal = SubResource("StyleBoxFlat_nd07b")
+Button/styles/pressed = SubResource("StyleBoxFlat_jw8yi")
+Label/colors/font_color = Color(0.89411765, 0.6509804, 0.44705883, 1)
+Label/colors/font_outline_color = Color(0.24705882, 0.15686275, 0.19607843, 1)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("1_nd07b")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/constants/outline_size = 1
+LineEdit/font_sizes/font_size = 18
+LineEdit/fonts/font = ExtResource("1_nd07b")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_gg8qu")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_q8mgx")
+RichTextLabel/font_sizes/normal_font_size = 72
+RichTextLabel/fonts/normal_font = ExtResource("2_nd07b")

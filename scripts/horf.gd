@@ -1,0 +1,308 @@
+extends Node2D
+
+enum HORF_COLOR {
+	BLUE,
+	BROWN,
+	GREEN,
+	ORANGE,
+	RED,
+	WHITE,
+	YELLOW,
+}
+
+const MAX_BRIBES: int = 10
+const VELOCITY_UPDATES: int = 5
+const LOCK = preload("uid://b6r00itrrxmyd")
+const RELIEVED = preload("uid://byk6j7td726fv")
+const SCARED = preload("uid://cee0bckx7vjr2")
+const BLUE_SPRITE_FRAMES = preload("uid://8p07cgqdkewl")
+const BROWN_SPRITE_FRAMES = preload("uid://cj1rl3e8bl8g1")
+const GREEN_SPRITE_FRAMES = preload("uid://uvymbwtkn1mi")
+const ORANGE_SPRITE_FRAMES = preload("uid://dcccr08rjeeea")
+const RED_SPRITE_FRAMES = preload("uid://chdpjv5emxgy3")
+const WHITE_SPRITE_FRAMES = preload("uid://cm66amy3tav26")
+const YELLOW_SPRITE_FRAMES = preload("uid://ijschumkawr5")
+const HORF_BLUE_PHOTO = preload("uid://c2f6oifl4rhr0")
+const HORF_BROWN_PHOTO = preload("uid://cm7a67fxrvqf0")
+const HORF_GREEN_PHOTO = preload("uid://wg6qvvjqn5jc")
+const HORF_ORANGE_PHOTO = preload("uid://rkgtgu1sciwo")
+const HORF_RED_PHOTO = preload("uid://coy64onte2umy")
+const HORF_WHITE_PHOTO = preload("uid://bs3kln1l6c1ux")
+const HORF_YELLOW_PHOTO = preload("uid://xfiuvuqvnot3")
+const TEXT_POPUP_SMALL = preload("uid://urf0ekfhj1p")
+
+
+
+@onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
+@onready var change_speed_timer: Timer = $ChangeSpeed
+@onready var lock_in_timer: Timer = $LockIn
+@onready var eat_timer: Timer = $Eat
+@onready var horf_sprite: AnimatedSprite2D = $Path2D/PathFollow2D/Horf # Need to set this up w/ preloads
+@onready var emote_sprite: Sprite2D = $Path2D/PathFollow2D/Emote
+@onready var dirt: CPUParticles2D = $Path2D/PathFollow2D/Dirt
+@onready var dirt_2: CPUParticles2D = $Path2D/PathFollow2D/Dirt2
+
+
+@onready var emote_anim: AnimationPlayer = $EmoteAnim
+@onready var stats_popup: Panel = $StatsPopup
+@onready var lose_button: Button = $VBoxContainer/LoseButton
+@onready var win_button: Button = $VBoxContainer/WinButton
+@onready var race_over: bool = false
+@onready var locked_in: bool = false
+@onready var eating: bool = false
+@onready var racing: bool = false
+@onready var bribe_counter: int = 0
+
+var speed_modifier: float = 1.0
+var speed: float
+var speed_low: float
+var speed_high: float
+var lock_in_likelihood: float
+var horf_id: int
+var odds_to_one: int
+var horf_name_first: String
+var horf_name_last: String
+var horf_sprite_string: String
+
+var speed_modifier_delta_on_bribe: float = randf_range(0.0025, 0.005)
+var lock_in_delta_on_bribe: float = randf_range(0.035, 0.075)
+var cost_to_bribe: int = randi_range(250, 750)
+var name_is_unique: bool = false
+var horf_color: int
+var color_array: Array
+var horf_photo: Resource
+
+
+func _ready() -> void:
+#	 Most functions called from main.tscn
+	_connect_signals()
+
+
+func _physics_process(delta: float) -> void:
+	if race_over:
+		return
+	path_follow_2d.progress += (speed * delta * speed_modifier)
+	if path_follow_2d.progress_ratio >= 1.0:
+		Signals.horf_is_winner.emit(horf_id)
+
+
+func assign_values_based_on_id() -> void:
+	if not GameData.HORF_DICT.has(horf_id):
+		print("out of range error")
+		return
+	odds_to_one = GameData.HORF_DICT[horf_id]["odds_to_one"]
+	speed_low = GameData.HORF_DICT[horf_id]["low_speed"]
+	speed_high = GameData.HORF_DICT[horf_id]["high_speed"]
+	lock_in_likelihood = GameData.HORF_DICT[horf_id]["lock_in_likelihood"]
+	_assign_name()
+	if not name_is_unique:
+		_assign_name()
+	_populate_stats_popup()
+
+
+func assign_colors() -> void:
+	match horf_color:
+		HORF_COLOR.BLUE:
+			color_array = [BLUE_SPRITE_FRAMES, HORF_BLUE_PHOTO]
+		HORF_COLOR.BROWN:
+			color_array = [BROWN_SPRITE_FRAMES, HORF_BROWN_PHOTO]
+		HORF_COLOR.GREEN:
+			color_array = [GREEN_SPRITE_FRAMES, HORF_GREEN_PHOTO]
+		HORF_COLOR.ORANGE:
+			color_array = [ORANGE_SPRITE_FRAMES, HORF_ORANGE_PHOTO]
+		HORF_COLOR.RED:
+			color_array = [RED_SPRITE_FRAMES, HORF_RED_PHOTO]
+		HORF_COLOR.WHITE:
+			color_array = [WHITE_SPRITE_FRAMES, HORF_WHITE_PHOTO]
+		HORF_COLOR.YELLOW:
+			color_array = [YELLOW_SPRITE_FRAMES, HORF_YELLOW_PHOTO]
+	horf_sprite.sprite_frames = color_array[0]
+	horf_photo = color_array[0]
+
+
+func _assign_name() -> void:
+	var first_name_array: Array = GameData.HORF_FIRST_NAME_ARRAY.duplicate()
+	var last_name_array: Array = GameData.HORF_LAST_NAME_ARRAY.duplicate()
+	first_name_array.shuffle()
+	last_name_array.shuffle()
+	horf_name_first = first_name_array[0]
+	horf_name_last = last_name_array[0]
+	for horf_child in get_tree().get_nodes_in_group("horf"):
+		if horf_child.horf_name_first == horf_name_first and horf_child.horf_name_last == horf_name_last:
+			if not horf_child == self:
+				name_is_unique = false
+				return
+	name_is_unique = true
+
+
+func _connect_signals() -> void:
+	Signals.misfire_gun.connect(_on_misfire_gun)
+	Signals.start_race.connect(_race_start)
+	Signals.horf_is_winner.connect(_race_over)
+	Signals.bets_placed.connect(_on_bets_placed)
+
+
+func _update_current_speed() -> void:
+	var new_speed: float = randf_range(speed_low, speed_high) * speed_modifier * 2
+	speed = new_speed
+
+
+func _populate_stats_popup() -> void:
+	stats_popup.speed_low = speed_low
+	stats_popup.speed_high = speed_high
+	stats_popup.lock_in_likelihood = lock_in_likelihood
+	stats_popup.odds_to_one = odds_to_one
+	stats_popup.horf_name_first = horf_name_first
+	stats_popup.horf_name_last = horf_name_last
+	stats_popup.cost_to_bribe = cost_to_bribe * GameData.current_day
+	stats_popup.modifier_delta_on_bribe = speed_modifier_delta_on_bribe
+	stats_popup.lock_in_delta_on_bribe = lock_in_delta_on_bribe
+	stats_popup.populate_text()
+
+
+func _bribe_jockey(is_bribed_to_be_worse: bool) -> void:
+	if bribe_counter >= MAX_BRIBES:
+		$VBoxContainer/Label.text = "MAXED"
+		lose_button.disabled = true
+		win_button.disabled = true
+		return
+	if is_bribed_to_be_worse:
+		speed_modifier -= speed_modifier_delta_on_bribe
+		if lock_in_likelihood > lock_in_delta_on_bribe:
+			lock_in_likelihood -= lock_in_delta_on_bribe
+	else:
+		speed_modifier += speed_modifier_delta_on_bribe
+		if lock_in_likelihood < (1 - lock_in_delta_on_bribe):
+			lock_in_likelihood += lock_in_delta_on_bribe
+	speed_low *= speed_modifier
+	speed_high *= speed_modifier
+	bribe_counter += 1
+	var text_popup = TEXT_POPUP_SMALL.instantiate()
+	text_popup.is_bribed_to_be_worse = is_bribed_to_be_worse
+	add_child(text_popup)
+	text_popup.position.x += 32
+	_populate_stats_popup()
+
+
+func _race_start() -> void:
+	racing = true
+	horf_sprite.play("run")
+	dirt.emitting = true
+	dirt_2.emitting = true
+	lose_button.disabled = true
+	win_button.disabled = true
+	$VBoxContainer/Label.text = "GLHF"
+	lock_in_timer.start()
+	_update_current_speed()
+	change_speed_timer.start()
+	eat_timer.queue_free()
+	if eating:
+		_on_misfire_gun() # Just a proxy for the scare emoji thing
+
+
+func _race_over(_horf_id: int) -> void:
+	race_over = true
+
+
+func _on_misfire_gun() -> void:
+	if locked_in:
+		return
+	lock_in_timer.stop()
+	change_speed_timer.stop()
+	speed = 0
+	horf_sprite.play("idle")
+	dirt.emitting = false
+	dirt_2.emitting = false
+	emote_sprite.texture = SCARED
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
+	await get_tree().create_timer(4.0).timeout
+	emote_anim.play_backwards("show")
+	horf_sprite.play("run")
+	dirt.emitting = true
+	dirt_2.emitting = true
+	_update_current_speed()
+	change_speed_timer.start()
+	lock_in_timer.start()
+
+
+func populate_bet_text(amount: int) -> void:
+	$Bet.text = str(amount)
+
+
+func _on_change_speed_timeout() -> void:
+	_update_current_speed()
+
+
+func _on_lock_in_timeout() -> void:
+	eating = false # Just to avoid the delay on the other timer...
+	if locked_in:
+		return
+	var random_float: float = randf()
+	if random_float >= lock_in_likelihood:
+		locked_in = false
+		return
+	lock_in_timer.stop()
+	locked_in = true
+	emote_sprite.texture = LOCK
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
+	await get_tree().create_timer(3.0).timeout
+	locked_in = false
+	lock_in_timer.start()
+	emote_anim.play_backwards("show")
+
+
+func _on_mouse_hitbox_mouse_entered() -> void:
+	for popup_child in get_tree().get_nodes_in_group("stats_popup"):
+		popup_child.hide_popup()
+	stats_popup.show_popup()
+
+
+func _on_mouse_hitbox_mouse_exited() -> void:
+	stats_popup.hide_popup()
+
+
+func _on_lose_button_pressed() -> void:
+	if (cost_to_bribe * GameData.current_day) > GameData.current_money:
+		return
+	_bribe_jockey(true)
+	Signals.update_money.emit(-cost_to_bribe * GameData.current_day)
+
+
+func _on_win_button_pressed() -> void:
+	if (cost_to_bribe * GameData.current_day) > GameData.current_money:
+		return
+	_bribe_jockey(false)
+	Signals.update_money.emit(-cost_to_bribe * GameData.current_day)
+
+
+func _on_eat_timeout() -> void:
+	if eating:
+		return
+	var random_float: float = randf()
+	if random_float <= lock_in_likelihood:
+		eating = false
+		return
+	eat_timer.stop()
+	eating = true
+	emote_sprite.texture = RELIEVED
+	horf_sprite.play("eat")
+	emote_anim.play("show")
+	await emote_anim.animation_finished
+	emote_anim.play("idle")
+	await horf_sprite.animation_finished
+	eating = false
+	horf_sprite.play("idle")
+	dirt.emitting = false
+	dirt_2.emitting = false
+	emote_anim.play_backwards("show")
+	if not racing:
+		eat_timer.start()
+
+
+func _on_bets_placed() -> void:
+	horf_sprite.play("idle")
+	eat_timer.start()

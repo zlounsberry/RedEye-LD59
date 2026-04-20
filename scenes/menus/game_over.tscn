@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b2frlq6axenbe"]
+
+[ext_resource type="Script" uid="uid://degno6f50f33m" path="res://scripts/menus/game_over.gd" id="1_ujjcl"]
+
+[node name="GameOver" type="Control" unique_id=866343158]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ujjcl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=816525305]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

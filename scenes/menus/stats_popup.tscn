@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://35o752mce1go"]
+
+[ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_dyeul"]
+[ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_hpipu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41dsf"]
+bg_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.3882353, 0.7764706, 0.3019608, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="StatsPopup" type="Panel" unique_id=150412088 groups=["stats_popup"]]
+z_index = 1
+custom_minimum_size = Vector2(256, 288)
+offset_left = -36.0
+offset_right = 733.48425
+offset_bottom = 419.0
+mouse_filter = 2
+theme = ExtResource("1_dyeul")
+theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
+script = ExtResource("1_hpipu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1656779253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 31.0
+offset_right = -16.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=376505193]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Horf Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odds" type="Label" parent="VBoxContainer" unique_id=1735039997]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="VBoxContainer" unique_id=884557266]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Focus" type="Label" parent="VBoxContainer" unique_id=1970194218]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BribeCost" type="Label" parent="VBoxContainer" unique_id=935952286]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BribeAmountSpeed" type="Label" parent="VBoxContainer" unique_id=536702168]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BribeAmountFocus" type="Label" parent="VBoxContainer" unique_id=1707688094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
