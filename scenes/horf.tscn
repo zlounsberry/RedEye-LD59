@@ -189,7 +189,7 @@ theme_override_constants/separation = 8
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=565734443]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 36
 text = "BRIBE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -198,7 +198,7 @@ vertical_alignment = 1
 texture_filter = 1
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Try To
 Lose"
 
@@ -208,7 +208,7 @@ layout_mode = 2
 [node name="WinButton" type="Button" parent="VBoxContainer" unique_id=1245382571]
 texture_filter = 1
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Try To
 Win"
 

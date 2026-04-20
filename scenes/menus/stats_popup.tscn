@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://b8rmaehx2pupe" path="res://resources/godot_resources/main_theme.tres" id="1_dyeul"]
 [ext_resource type="Script" uid="uid://he5vld028bia" path="res://scripts/stats_popup.gd" id="1_hpipu"]
-[ext_resource type="Texture2D" uid="uid://dxluetgnmx57p" path="res://icon.svg" id="2_dyeul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41dsf"]
 bg_color = Color(0.09803922, 0.23921569, 0.24705882, 1)
@@ -21,8 +20,8 @@ corner_radius_bottom_left = 8
 z_index = 1
 custom_minimum_size = Vector2(256, 288)
 offset_left = -36.0
-offset_right = 548.0
-offset_bottom = 576.0
+offset_right = 733.48425
+offset_bottom = 419.0
 mouse_filter = 2
 theme = ExtResource("1_dyeul")
 theme_override_styles/panel = SubResource("StyleBoxFlat_41dsf")
@@ -47,14 +46,6 @@ theme_override_font_sizes/font_size = 32
 text = "Horf Name"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1950521882]
-custom_minimum_size = Vector2(552, 128)
-layout_mode = 2
-
-[node name="HorfSprite" type="Sprite2D" parent="VBoxContainer/MarginContainer" unique_id=1617002537]
-position = Vector2(276, 64)
-texture = ExtResource("2_dyeul")
 
 [node name="Odds" type="Label" parent="VBoxContainer" unique_id=1735039997]
 layout_mode = 2

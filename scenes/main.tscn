@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfebo3ty58mr1" path="res://scenes/signal_gun.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://duu3pry7a45f7" path="res://scenes/menus/money_ui.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d4m6vnpt4jcg0" path="res://scenes/menus/place_bet_menu.tscn" id="5_tbgi4"]
+[ext_resource type="FontFile" uid="uid://dohyhfqlsx8g0" path="res://resources/fonts/Boomer Tantrum.otf" id="7_tipki"]
 
 [node name="Main" type="Control" unique_id=53092059]
 layout_mode = 3
@@ -88,6 +89,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme = ExtResource("1_tefeu")
 theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_tipki")
 bbcode_enabled = true
 text = "[center]DAY 12"
 fit_content = true

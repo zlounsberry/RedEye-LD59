@@ -283,7 +283,7 @@ func _on_eat_timeout() -> void:
 	if eating:
 		return
 	var random_float: float = randf()
-	if random_float >= lock_in_likelihood:
+	if random_float <= lock_in_likelihood:
 		eating = false
 		return
 	eat_timer.stop()
